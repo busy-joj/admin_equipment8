@@ -1,5 +1,5 @@
 // Default variable overrides
-$primary: #fdc000;
+$primary: #2C8DFF;
 
 .blind {
     position: absolute !important;
@@ -9,6 +9,8 @@ $primary: #fdc000;
     overflow: hidden !important;
     clear: rect(0 0 0 0) !important;
 }
+
+
 
 // Required
 @import "../../node_modules/bootstrap/scss/functions";

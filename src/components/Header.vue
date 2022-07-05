@@ -14,30 +14,37 @@
         </RouterLink>
       </div>
     </div>
+    <UserInfo />
   </header>
 </template>
 
 <script>
 import Logo from '~/components/Logo'
+import UserInfo from '~/components/UserInfo'
     export default{
       components:{
-        Logo
+        Logo,
+        UserInfo
       },
         data(){
             return {
                 navigation:[
                     {
-                        name : 'Search',
+                        name : '장비대여',
                         href : '/'
                     },
                     {
-                        name : 'Movie',
+                        name : '장비관리',
                         href : '/movie'
                     },
                     {
-                        name : 'About',
+                        name : '수령확인',
                         href : '/about'
                     },
+                    {
+                        name : '계정관리',
+                        href : '/Account'
+                    }
                 ]
             }
         }
@@ -51,8 +58,15 @@ header{
   padding:0 40px;
   display:flex;
   align-items: center;
+  justify-content: space-between;
   .logo{
     margin-right:40px;
   }
+  .nav{gap:75px;
+    .nav-link{color:#fff;padding:0;
+      &.active{color:#2c8dff;background: none;}
+    }
+  }
+  
 }
 </style>

@@ -4,7 +4,7 @@
     class="logo">
     <h1>
       <img
-        src="../assets/img-logo-kbsmedia.png"
+        src="~/assets/img-logo-kbsmedia.png"
         alt="KBS미디어" /><span class="blind">KBS미디어</span>
     </h1>
   </RouterLink>
