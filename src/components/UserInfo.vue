@@ -24,7 +24,7 @@ export default{
                     {
                         name : '내 정보', 
                         // img : require('~/assets/icon/icon-info-my.png'),
-                        href : '/'
+                        href : '/mypage'
                     },
                     {
                         name : '패스워드 변경',

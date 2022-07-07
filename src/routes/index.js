@@ -3,6 +3,7 @@ import Home from './Home'
 import Movie from './Movie'
 import About from './About'
 import Account from './Account'
+import MyPage from './MyPage'
 
 
 export default createRouter({
@@ -23,8 +24,12 @@ export default createRouter({
             component: About
         },
         {
-            path: '/Account',
+            path: '/account',
             component: Account
+        },
+        {
+            path: '/mypage',
+            component: MyPage
         }
     ]
 })

@@ -1,3 +1,5 @@
 <template>
-  <h1>계정관리</h1>
+  <div class="container">
+    <h1>계정관리</h1>
+  </div>
 </template>

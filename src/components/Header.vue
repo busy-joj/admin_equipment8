@@ -43,7 +43,7 @@ import UserInfo from '~/components/UserInfo'
                     },
                     {
                         name : '계정관리',
-                        href : '/Account'
+                        href : '/account'
                     }
                 ]
             }
