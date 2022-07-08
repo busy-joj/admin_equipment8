@@ -1,8 +1,16 @@
 <template>
   <div class="container">
-    <h1>장비대여</h1>
-    <div class="btn btn-primary">
-      장비대여
-    </div>
+    <h2>장비대여</h2>
+    
+    <ListCard />
   </div>
 </template>
+
+<script>
+import ListCard from '~/components/ListCard'
+export default {
+  components:{
+    ListCard
+  }
+}
+</script>

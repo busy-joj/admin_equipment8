@@ -1,6 +1,14 @@
 // Default variable overrides
 $body-bg: #fbfbfb;
 $primary: #2C8DFF;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1200px
+) !default;
+h2{font-weight: 600 !important;margin-bottom:32px !important;letter-spacing: -.03rem;}
 .container{
     margin-top:40px;
 }
@@ -12,6 +20,7 @@ $primary: #2C8DFF;
     overflow: hidden !important;
     clear: rect(0 0 0 0) !important;
 }
+
 
 
 
