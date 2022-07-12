@@ -7,10 +7,13 @@
           <span class="model-made">{{ item.os }}</span>
         </div>
         <div class="item-state">
-          <div class="select"><span class="txt">선택</span><span class="icon"></span></div>
+          <div class="select">
+            <span v-if="!item.isSelected" class="txt">선택</span>
+            <span v-else class="txt">선택됨</span>
+            <span class="icon"></span></div>
         </div>
-        <button class="btn-info-detail"></button>      
       </a>
+      <button class="btn-info-detail"></button>     
     </div>
   </div>
 </template>
@@ -85,11 +88,13 @@ export default {
           os: 'Android 112',
           isSelected : false
         }
-      ]
+      ],
+            isAddClass : false
     }
+    
   },
   methods:{
-  
+    
   }
 }
 </script>
@@ -111,7 +116,6 @@ export default {
           .icon{width:24px;height:24px;background:url(~/assets/icon-arrow-r.png) no-repeat;background-size:100%;}
         }
       }
-      .btn-info-detail{position:absolute;width:24px;height:24px;background:url(~/assets/icon-search.png);background-size:100%;top:20px;right:16px;border:none;}
     }
     &:hover{border:1px solid #3F3F3F;box-shadow:0 16px 16px rgb(63 63 63 / 24%);transform:translateY(-16px);transition:all .3 ease;
       .select{background:#3f3f3f;}
@@ -122,19 +126,12 @@ export default {
               .icon{background:url(~/assets/icon-check.png) no-repeat;background-size:100%;}
         }
       }
-      
-      &:hover{box-shadow:0 16px 16px rgb(63 63 63 / 24%);transform:translateY(-16px);transition:all .3 ease;
-        .item-state{
-          .select{
-            .icon{background:url(~/assets/icon-close.png) no-repeat;background-size:100%;}
-          }
-        }
-      }
+      &:hover{box-shadow:0 16px 16px rgb(63 63 63 / 24%);transform:translateY(-16px);transition:all .3 ease;}
     }
     &.rented{opacity: .32;
       .btn-info-detail{cursor: inherit;}
     }
+    .btn-info-detail{position:absolute;width:24px;height:24px;background:url(~/assets/icon-search.png);background-size:100%;top:20px;right:16px;border:none;}
   }
 }
-
 </style>
