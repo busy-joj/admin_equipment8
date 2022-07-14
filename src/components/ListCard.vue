@@ -100,7 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
 .list-card{display:flex;flex-wrap:wrap;justify-content:space-between;
   .list-card-item{border:1px solid #D9D9D9;border-radius:4px;position:relative;flex-basis:282px;cursor: pointer;margin-bottom:24px;
     a{display: block;text-decoration:none;color:#000;
