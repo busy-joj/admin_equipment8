@@ -13,7 +13,7 @@
         &::placeholder{color:#a4a4a4;}
     }
     .btn-close{
-        position:absolute;width:26px;height:26px;background:url(~/assets/icon-close.png);background-color:#a4a4a4;border-radius:50%;background-size:90%;background-position:center;bottom:14px;right:0;
+        position:absolute;width:26px;height:26px;background:url(~/assets/icon-close.png);background-color:#a4a4a4;border-radius:50%;background-size:90%;background-position:center;bottom:15px;right:0;padding:0;
     }
 }
 </style>
