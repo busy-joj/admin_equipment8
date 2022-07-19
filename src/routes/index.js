@@ -4,6 +4,7 @@ import Movie from './Movie'
 import About from './About'
 import Account from './Account'
 import MyPage from './MyPage'
+import RentApply from './RentApply'
 
 
 export default createRouter({
@@ -30,6 +31,10 @@ export default createRouter({
         {
             path: '/mypage',
             component: MyPage
+        },
+        {
+            path: '/rentApply',
+            component: RentApply
         }
     ]
 })
