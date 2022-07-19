@@ -1,10 +1,26 @@
 <template>
     <div class="search-box">
         <button class="btn-search" type="button" id="button-search"><span class="blind">검색</span></button>
-        <input type="text" class="input-search" placeholder="장비를 검색해보세요!" @keyup.enter="search">
-        <button class="btn-close" type="button" id="button-close"><span class="blind">닫기</span></button>
+        <input @input="changeKeyword" :value="keyword" type="text" class="input-search" placeholder="장비를 검색해보세요!" @keyup.enter="search">
+        <button class="btn-close" type="button" id="button-close" @click="keyword = ''"><span class="blind">닫기</span></button>
     </div>
+    <p>{{keyword}}</p>
 </template>
+
+<script>
+export default {
+    data(){
+        return{
+            keyword:''
+        }
+    },
+    methods:{
+        changeKeyword(e){
+            this.keyword = e.target.value
+        }
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 .search-box{position:relative;width:100%;margin-bottom:40px;

@@ -1,36 +1,66 @@
 <template>
     <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">전체</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">대여가능</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Android</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">iOS</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">폰</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">태블릿</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">유심</a>
-        </li>        
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">기타</a>
+        <li class="nav-item" v-for="(item, i) in category" :key="i" >
+            <BasicTab @click="activeTab($event,i)" :class="{active : item.isActive}">{{item.text}}</BasicTab>
         </li>
     </ul>
 </template>
 
 <script>
-export default {
+import BasicTab from '~/components/basic/BasicTab'
 
-}
+    export default {
+    components:{
+        BasicTab
+    },
+    data(){
+        return{
+                category:[
+                { 
+                    text : '전체',
+                    isActive : false
+                },
+                { 
+                    text : '대여가능',
+                    isActive : false
+                },
+                { 
+                    text : 'Android',
+                    isActive : false
+                },
+                { 
+                    text : 'iOS',
+                    isActive : false
+                },
+                { 
+                    text : '폰',
+                    isActive : false
+                },
+                { 
+                    text : '태블릿',
+                    isActive : false
+                },
+                { 
+                    text : '유심',
+                    isActive : false
+                },
+                { 
+                    text : '기타',
+                    isActive : false
+                }
+                ],
+                
+            }
+    },
+    methods:{
+        activeTab(e,i){
+        e.preventDefault();
+        console.log(this.isActive)
+        this.category[i].isActive = !this.category[i].isActive
+        console.log(this.isActive)
+        }
+    }
+    }
 </script>
 
 <style lang="scss" scoped>
