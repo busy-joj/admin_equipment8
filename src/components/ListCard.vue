@@ -20,15 +20,17 @@
     <button class="btn btn-go-rent">대여신청<span class="selected-num">1</span></button> 
   </div>
 
-  <DetailModal v-if="showModal" class="detail-info" @close="showModal = false"/>
+  <DetailModal v-if="showModal" class="detail-info" @closeModal="showModal = false"/>
 </template>
 
 <script>
 import DetailModal from '~/components/DetailModal'
+import BasicButton from '~/components/basic/BasicButton'
 
 export default {
   components:{
-    DetailModal
+    DetailModal,
+    BasicButton
   },
   data(){
     return {

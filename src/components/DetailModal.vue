@@ -36,10 +36,9 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-detail-close" data-bs-dismiss="modal" @click="$emit('close')">취소</button>
-
+                <BasicButton :class="{none : true}" @click="$emit('closeModal')">취소</BasicButton>
                 <RouterLink to="../routes/RentApply">
-                    <button type="button" class="btn btn-go-rent">대여</button>
+                    <BasicButton :class="{primary : true, mn: true}">대여</BasicButton>
                 </RouterLink>
             </div>
         </div>
@@ -47,8 +46,11 @@
 </template>
 
 <script>
+import BasicButton from '~/components/basic/BasicButton'
 export default {
-    
+    components:{
+        BasicButton
+    }
 }
 </script>
 
@@ -57,21 +59,15 @@ export default {
     position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(56,56,56,.5);display:flex;align-items:center;justify-content:center;
     .modal-content{width:420px;min-height:476px;border:1px solid #d9d9d9;background:#fff;border-radius:4px;
         .modal-header{padding:24px 32px;border-bottom:.5px solid #e1e1e1; 
-        .modal-title{font-size:16px;color:#242424;font-weight:600;padding:0;}
+            .modal-title{font-size:16px;color:#242424;font-weight:600;padding:0;}
         }
         .modal-body{padding:24px 32px;
-        dl{display:flex;font-size:14px;
-            dt{width:30%;color:#242424;font-weight:400}
-            dd{color:#a4a4a4;}
-        }
-        }
-        .modal-footer{
-        border-top:none;padding:0 32px 24px 32px;
-            button{padding:9px 29px;font-size:14px;font-weight:bold;
-                &.btn-detail-close{background:none;color:#3f3f3f;margin-right:8px;}
-                &.btn-go-rent{background:$primary;color:#fff;}
+            dl{display:flex;font-size:14px;
+                dt{width:30%;color:#242424;font-weight:400}
+                dd{color:#a4a4a4;}
             }
         }
+        .modal-footer{border-top:none;padding:0 32px 24px 32px;}
     }
 }
 </style>
