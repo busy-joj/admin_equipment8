@@ -2,7 +2,6 @@
     <a class="nav-link" aria-current="page" href="#none">
         <slot></slot>
     </a>
-
 </template>
 
 <script>
