@@ -18,7 +18,7 @@ import BasicTab from '~/components/basic/BasicTab'
                 category:[
                 { 
                     text : '전체',
-                    isActive : false
+                    isActive : true
                 },
                 { 
                     text : '대여가능',
@@ -55,9 +55,7 @@ import BasicTab from '~/components/basic/BasicTab'
     methods:{
         activeTab(e,i){
         e.preventDefault();
-        console.log(this.isActive)
         this.category[i].isActive = !this.category[i].isActive
-        console.log(this.isActive)
         }
     }
     }

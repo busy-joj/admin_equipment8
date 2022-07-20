@@ -1,14 +1,22 @@
 <template>
     <div class="search-box">
-        <button class="btn-search" type="button" id="button-search"><span class="blind">검색</span></button>
+        <div class="btn-search">
+            <IconButton :class="{search : true, big:true}"><span class="blind">검색</span></IconButton>
+        </div>
         <input @input="changeKeyword" :value="keyword" type="text" class="input-search" placeholder="장비를 검색해보세요!" @keyup.enter="search">
-        <button class="btn-close" type="button" id="button-close" @click="keyword = ''"><span class="blind">닫기</span></button>
+        <div class="btn-cancel">
+            <IconButton :class="{close : true}" @click="keyword = ''"><span class="blind">닫기</span></IconButton>
+        </div>
     </div>
-    <p>{{keyword}}</p>
 </template>
 
 <script>
+import IconButton from '~/components/basic/IconButton'
+
 export default {
+    components:{
+        IconButton
+    },
     data(){
         return{
             keyword:''
@@ -24,12 +32,10 @@ export default {
 
 <style lang="scss" scoped>
 .search-box{position:relative;width:100%;margin-bottom:40px;
-    .btn-search{position:absolute;width:32px;height:32px;background:url(~/assets/icon-search.png);background-size:100%;padding:0;bottom:14px;border:none;}
+    .btn-search{position:absolute;bottom:14px;}
     .input-search{width:100%;padding:14px 0 14px 48px;font-size:24px;background: none;border:none;border-bottom:1px solid #d9d9d9;color:#000;
         &::placeholder{color:#a4a4a4;}
     }
-    .btn-close{
-        position:absolute;width:26px;height:26px;background:url(~/assets/icon-close.png);background-color:#a4a4a4;border-radius:50%;background-size:90%;background-position:center;bottom:15px;right:0;padding:0;
-    }
+    .btn-cancel{position:absolute;bottom:15px;right:0;}
 }
 </style>

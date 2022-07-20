@@ -1,11 +1,18 @@
 <template>
   <!-- 버튼 테스트중!! -->
-  <div class="container">
+  <div class="container" style="background: red">
     <h2>대여신청</h2>
     <BasicButton :class="{none : true , mn : true}">신청</BasicButton>
     <BasicButton :class="{gray : true}">대여</BasicButton>
     <BasicButton :class="{white : true}">대여</BasicButton>
     <BasicButton :class="{primary : true}">대여</BasicButton>
+    <BasicButton :class="{primary : true}">대여</BasicButton>
+
+    <IconButton :class="{search : true}"></IconButton>
+    <IconButton :class="{search : true, big:true}"></IconButton>
+    <IconButton :class="{close : true}"></IconButton>
+    <IconButton :class="{check : true}"></IconButton>
+    <IconButton :class="{arrow : true}"></IconButton>
     
   </div>
   
@@ -13,10 +20,12 @@
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
+import IconButton from '~/components/basic/IconButton'
 
 export default {
   components:{
-    BasicButton
+    BasicButton,
+    IconButton
   },
   data(){
     return{

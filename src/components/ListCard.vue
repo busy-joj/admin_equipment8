@@ -1,4 +1,5 @@
 <template>
+<!-- 데이터 작업 후 ItemCard 컴포넌트 작업할 것 2022-07-20 -->
   <div class="inner">
     <div class="list-card">
       <div v-for="( item, index ) in equipment" :key="item.model" class="list-card-item" :class="{'selected' : item.isSelected}">
@@ -14,10 +15,15 @@
               <span class="icon"></span></div>
           </div>
         </a>
-        <button class="btn-info-detail" @click.stop="showModal = true"><span class="blind">상세보기</span></button>     
+        <div class="btn-info-detail">
+          <IconButton :class="{search : true}" @click.stop="showModal = true"><span class="blind">상세보기</span></IconButton>
+        </div>
       </div>
     </div>
-    <button class="btn btn-go-rent">대여신청<span class="selected-num">1</span></button> 
+    
+    <RouterLink to="../routes/RentApply" class="btn-go-rent">
+      <BasicButton :class="{primary : true, mn: true}">대여신청<span class="selected-num">1</span></BasicButton>
+    </RouterLink>
   </div>
 
   <DetailModal v-if="showModal" class="detail-info" @closeModal="showModal = false"/>
@@ -26,11 +32,13 @@
 <script>
 import DetailModal from '~/components/DetailModal'
 import BasicButton from '~/components/basic/BasicButton'
+import IconButton from '~/components/basic/IconButton'
 
 export default {
   components:{
     DetailModal,
-    BasicButton
+    BasicButton,
+    IconButton
   },
   data(){
     return {
@@ -145,11 +153,11 @@ export default {
       &.rented{opacity: .32;
         .btn-info-detail{cursor: inherit;}
       }
-      .btn-info-detail{position:absolute;width:24px;height:24px;background:url(~/assets/icon-search.png);background-size:100%;top:20px;right:16px;border:none;}
+      .btn-info-detail{position:absolute;top:20px;right:16px;}
     }
   }
   .btn-go-rent{
-    position:absolute;top:-80px;right:0;background: $primary;padding:8px 30px 7px;color:#fff;font-weight:bold;border-radius:4px;
+    position:absolute;top:-80px;right:0;
     .selected-num{margin-left:5px;}
   }
 }
