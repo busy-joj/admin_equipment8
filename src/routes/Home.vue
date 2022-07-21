@@ -3,20 +3,20 @@
     <Search />
     <h2>장비목록</h2>
     <Tabs />
-    <ListCard />
+    <CardList />
   </div>
 </template>
 
 <script>
 import Search from '~/components/Search'
 import Tabs from '~/components/Tabs'
-import ListCard from '~/components/ListCard'
+import CardList from '~/components/CardList'
 
 export default {
   components:{
     Search,
     Tabs,
-    ListCard
+    CardList
   }
 }
 </script>
