@@ -11,7 +11,10 @@ $container-max-widths: (
 
 h2{font-weight: 600 !important;margin-bottom:32px !important;letter-spacing: -.03rem;}
 .container{
+    position:relative;
     margin-top:40px;
+    padding-right:0 !important;
+    padding-left:0 !important;
 }
 .blind {
     position: absolute !important;
@@ -22,6 +25,9 @@ h2{font-weight: 600 !important;margin-bottom:32px !important;letter-spacing: -.0
     clear: rect(0 0 0 0) !important;
 }
 
+.input-list-box{
+  background: #fff;border:1px solid #d9d9d9;padding:16px 32px;border-radius:4px;
+}
 
 
 

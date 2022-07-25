@@ -27,7 +27,7 @@ export default{
                     },
                     {
                         name : '패스워드 변경',
-                        href : '/movie'
+                        href : '/changepw'
                     },
                     {
                         name : '로그아웃',
