@@ -2,20 +2,20 @@
   <div class="container">
     <Search />
     <h2>장비목록</h2>
-    <Tabs />
+    <MainTabs />
     <CardList />
   </div>
 </template>
 
 <script>
 import Search from '~/components/Search'
-import Tabs from '~/components/Tabs'
+import MainTabs from '~/components/MainTabs'
 import CardList from '~/components/CardList'
 
 export default {
   components:{
     Search,
-    Tabs,
+    MainTabs,
     CardList
   }
 }

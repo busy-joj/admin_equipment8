@@ -1,26 +1,13 @@
 <template>
-  <div class="container">
-    <h2>내 정보</h2>
-    <SubTabs />
-    <div class="btn-box">
-      <BasicButton :class="{white : true}">뒤로</BasicButton>
-      <BasicButton :class="{primary : true, mn: true}">수정</BasicButton>
-    </div>
-    <!-- <div class="input-list-box">
+    <div class="input-list-box">
         <InputItem v-for="item in myInputList" :key="item.id" :id="item.id" :type="item.type" :value="item.value"> {{ item.name }} </InputItem>
-    </div> -->
-  </div>
+    </div>
 </template>
 
 <script>
-import SubTabs from '~/components/SubTabs'
-import BasicButton from '~/components/basic/BasicButton'
 import InputItem from '~/components/basic/InputItem'
-
 export default {
     components : {
-        SubTabs,
-        BasicButton,
         InputItem
     },
     data(){
@@ -67,7 +54,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.btn-box{top:69px;}
-</style>

@@ -1,9 +1,8 @@
 <template>
-    <ul class="nav nav-pills">
-        <li class="nav-item" v-for="(item, i) in category" :key="i" >
-            <BasicTab @click="activeTab($event,i)" :class="{active : item.isActive}">{{item.text}}</BasicTab>
-        </li>
-    </ul>
+    <!-- active 중복 가능 -->
+    <div class="tab-nav">
+        <BasicTab v-for="(item, i) in category" :key="i"  @click="activeTab($event,i)" :class="{active : item.isActive}">{{item.text}}</BasicTab>
+    </div>
 </template>
 
 <script>
@@ -62,9 +61,5 @@ import BasicTab from '~/components/basic/BasicTab'
 </script>
 
 <style lang="scss" scoped>
-.nav{margin-bottom:40px;
-    .nav-link{font-size:14px;color:#3f3f3f;padding:9px 12px;margin-right:20px;
-        &.active{font-weight:bold;background-color:#f0f0f0;color:#3f3f3f;}
-    }
-}
+.tab-nav{margin-bottom:40px;}
 </style>

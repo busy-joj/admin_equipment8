@@ -56,6 +56,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-box{display:inlien-flex;margin-bottom:24px;position:absolute;right:0;top:0;}
 
 </style>
