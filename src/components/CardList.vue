@@ -153,8 +153,8 @@ export default {
         }
         .item-state{height:56px;
           .select{font-size:14px;font-weight:600;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-radius:0px 0px 4px 4px;
-            .txt{color:$white;}
-            .icon{width:24px;height:24px;background:url(~/assets/icon-arrow-r.png) no-repeat;background-size:100%;}
+            .txt{color:$white;visibility:hidden;}
+            .icon{width:24px;height:24px;background:url(~/assets/icon-arrow-r.png) no-repeat;background-size:100%;visibility:hidden;}
           }
           .rented{font-size:14px;font-weight:600;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-radius:0px 0px 4px 4px;
             .icon{width:24px;height:24px;border-radius:50%;background-color:#242424;}
@@ -165,12 +165,18 @@ export default {
         }
       }
       &:hover{border:1px solid #3F3F3F;box-shadow:0 16px 16px rgb(63 63 63 / 24%);transform:translateY(-16px);transition:all .3 ease;
-        .select{background:#3f3f3f;}
+        .item-state{
+          .select{background:#3f3f3f;
+            .txt{visibility:visible;}
+            .icon{visibility:visible;}
+          }
+        }
       }
       &.selected{cursor: pointer;border:1px solid $primary;
         .item-state{
           .select{background:$primary;
-                .icon{background:url(~/assets/icon-check.png) no-repeat;background-size:100%;}
+            .txt{visibility:visible;}
+            .icon{background:url(~/assets/icon-check.png) no-repeat;background-size:100%;visibility:visible;}
           }
         }
         &:hover{box-shadow:0 16px 16px rgb(63 63 63 / 24%);transform:translateY(-16px);transition:all .3 ease;}
