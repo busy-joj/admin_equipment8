@@ -4,19 +4,19 @@
         <BasicTab v-for="(item, i) in tabs" :key="i" @click="currentTab = i" :class="currentTab === i ? 'active' : ''">{{ item.text }}</BasicTab>
     </div>
     <div class="tab-content">
-        <SubTabCont v-show="currentTab === 0">가나다라</SubTabCont>
-        <SubTabCont v-show="currentTab === 1">마바사아</SubTabCont>
+        <SubTabCon v-show="currentTab === 0">가나다라</SubTabCon>
+        <SubTabCon v-show="currentTab === 1">마바사아</SubTabCon>
     </div>
 </template>
 
 <script>
 import BasicTab from '~/components/basic/BasicTab'
-import SubTabItem from '~/components/SubTabCont'
+import SubTabCon from '~/components/SubTabCon'
 
 export default {
     components:{
         BasicTab,
-        SubTabItem
+        SubTabCon
     },
     data(){
         return{
