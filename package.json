@@ -42,11 +42,13 @@
   },
   "dependencies": {
     "@vue/component-compiler-utils": "^3.3.0",
+    "@vuepic/vue-datepicker": "^3.3.1",
     "bootstrap": "^5.2.0-beta1",
     "url-loader": "^4.1.1",
     "vue": "^3.2.37",
     "vue-file-loader": "0.0.1",
     "vue-router": "^4.0.16",
+    "vue3-datepicker": "^0.3.4",
     "vuetify": "^2.6.7",
     "vuex": "^4.0.2"
   }

@@ -3,14 +3,17 @@
     <div class="tab-nav">
         <BasicTab v-for="(item, i) in category" :key="i"  @click="activeTab($event,i)" :class="{active : item.isActive}">{{item.text}}</BasicTab>
     </div>
+    <CardList />
 </template>
 
 <script>
 import BasicTab from '~/components/basic/BasicTab'
+import CardList from '~/components/CardList'
 
     export default {
     components:{
-        BasicTab
+        BasicTab,
+        CardList
     },
     data(){
         return{

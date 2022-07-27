@@ -1,18 +1,17 @@
 <template>
   <!-- 버튼 테스트중!! -->
-  <div class="container" style="background: red">
-    <h2>대여신청</h2>
-    <BasicButton :class="{none : true , mn : true}">신청</BasicButton>
-    <BasicButton :class="{gray : true}">대여</BasicButton>
-    <BasicButton :class="{white : true}">대여</BasicButton>
-    <BasicButton :class="{primary : true}">대여</BasicButton>
-    <BasicButton :class="{primary : true}">대여</BasicButton>
-
-    <IconButton :class="{search : true}"></IconButton>
-    <IconButton :class="{search : true, big:true}"></IconButton>
-    <IconButton :class="{close : true}"></IconButton>
-    <IconButton :class="{check : true}"></IconButton>
-    <IconButton :class="{arrow : true}"></IconButton>
+  <div class="container">
+    <h2>대여신청</h2> 
+    <div class="btn-box">
+      <BasicButton :class="{white : true}">신청</BasicButton>
+      <BasicButton :class="{gray : true, mn : true}">대여</BasicButton>
+    </div>
+    <div class="input-list-box">
+        <InputItem v-for="item in myInputList" :key="item.id" :id="item.id" :type="item.type" :value="item.value"> {{ item.name }} </InputItem>
+    </div>
+    <div class="box" style="display:flex;">
+      <DatePicker />
+    </div>
     
   </div>
   
@@ -21,49 +20,48 @@
 <script>
 import BasicButton from '~/components/basic/BasicButton'
 import IconButton from '~/components/basic/IconButton'
+import InputItem from '~/components/basic/InputItem'
+import DatePicker from '~/components/basic/DatePicker'
 
 export default {
   components:{
     BasicButton,
-    IconButton
+    IconButton,
+    InputItem,
+    DatePicker
   },
   data(){
     return{
-            category:[
-              { 
-                text : '전체',
-                isActive : false
-              },
-              { 
-                text : '대여가능',
-                isActive : false
-              },
-              { 
-                text : 'Android',
-                isActive : false
-              },
-              { 
-                text : 'iOS',
-                isActive : false
-              },
-              { 
-                text : '폰',
-                isActive : false
-              },
-              { 
-                text : '태블릿',
-                isActive : false
-              },
-              { 
-                text : '유심',
-                isActive : false
-              },
-              { 
-                text : '기타',
-                isActive : false
-              }
-            ],
+           myInputList:[
+          {
+            id:'myName',
+            name : '성명',
+            type:'text',
+            value: '홍길동',
+            readonly: true
+          },
+          {
+            id:'myEmail',
+            name : '회사 이메일',
+            type:'text',
+            value: 'kbsMedia',
+            readonly: true
             
+          },
+          {
+            id:'myPhone',
+            name : '연락처',
+            type:'password',
+            value: '0102345678',
+            readonly: true
+          },
+          {
+            id:'changPwconfig',
+            name : '비밀번호 확인',
+            type:'password',
+            value: '000000'
+          },
+        ]            
         }
   },
   methods:{
