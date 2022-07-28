@@ -1,5 +1,4 @@
 <template>
-  <!-- 버튼 테스트중!! -->
   <div class="container">
     <h2>대여신청</h2> 
     <div class="btn-box">
@@ -9,26 +8,20 @@
     <div class="input-list-box">
         <InputItem v-for="item in myInputList" :key="item.id" :id="item.id" :type="item.type" :value="item.value"> {{ item.name }} </InputItem>
     </div>
-    <div class="box" style="display:flex;">
-      <DatePicker />
-    </div>
-    
   </div>
-  
 </template>
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
 import IconButton from '~/components/basic/IconButton'
 import InputItem from '~/components/basic/InputItem'
-import DatePicker from '~/components/basic/DatePicker'
+
 
 export default {
   components:{
     BasicButton,
     IconButton,
-    InputItem,
-    DatePicker
+    InputItem
   },
   data(){
     return{
@@ -60,6 +53,10 @@ export default {
             name : '비밀번호 확인',
             type:'password',
             value: '000000'
+          },
+          {
+            id:'date',
+            name : '대여기간 설정',
           },
         ]            
         }
