@@ -6,6 +6,7 @@ import Account from './Account'
 import MyPage from './MyPage'
 import RentApply from './RentApply'
 import ChangePw from './ChangePw'
+import Login from './Login'
 
 
 export default createRouter({
@@ -40,6 +41,10 @@ export default createRouter({
         {
             path: '/changepw',
             component: ChangePw
+        },
+        {
+            path: '/login',
+            component: Login
         }
     ]
 })
