@@ -25,7 +25,7 @@ export default {
   },
   data(){
     return{
-           myInputList:[
+        myInputList:[
           {
             id:'myName',
             name : '성명',

@@ -53,6 +53,16 @@ h2{font-weight: 600 !important;margin-bottom:32px !important;letter-spacing: -.0
   }
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 // Required
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
