@@ -6,7 +6,11 @@ import Account from './Account'
 import MyPage from './MyPage'
 import RentApply from './RentApply'
 import ChangePw from './ChangePw'
-import Login from './Login'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
+import SignFind from './SignFind'
+// import SignUp from './SignUp'
+// import SignFind from './SignFind'
 
 
 export default createRouter({
@@ -43,8 +47,18 @@ export default createRouter({
             component: ChangePw
         },
         {
-            path: '/login',
-            component: Login
+            path: '/signin',
+            component: SignIn
+        },
+        {
+            path: '/signup',
+            component : SignUp
+        },
+        {
+            path: '/signFind',
+            component : SignFind
+            // path: '/signFind',
+            // component : SignFind
         }
     ]
 })

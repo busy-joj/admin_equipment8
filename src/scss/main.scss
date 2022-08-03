@@ -63,6 +63,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.sign-container{height:100vh;display: flex;flex-direction:column;flex-grow:1;align-items:center;justify-content: center;
+  .inner{width:346px;}
+}
+
 // Required
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
