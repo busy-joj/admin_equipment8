@@ -4,7 +4,7 @@
       <FormSignTop />
       <FormSignIn />
     </div><!-- /.inner -->
-  </div><!-- /.login-container -->
+  </div><!-- /.sign-container -->
 </template>
 
 <script>
