@@ -1,11 +1,11 @@
 <template>
     <div v-if="signIn.id === 'keep'" :class="signIn.id" >
-        <input type="checkbox" :id="signIn.id" name="logKeep" :value="signIn.value">
+        <input type="checkbox" :id="signIn.id" name="logKeep" :value="signIn.value" required>
         <label :for="signIn.id" class="txt">로그인 상태 유지</label>
     </div>
 
     <div v-else :class="[signIn.id, {'on': signIn.isFocus} ]" >
-        <input :type="signIn.type" @focus="focusIn(signIn)" :placeholder="signIn.placeholder" class="form-control" :id="signIn.id" v-model="signIn.value">
+        <input :type="signIn.type" @focus="focusIn(signIn)" :placeholder="signIn.placeholder" class="form-control" :id="signIn.id" v-model="signIn.value" required>
         <IconButton v-if="signIn.value !== null" :class="{close : true}" @click="resetValue(signIn)"></IconButton>
     </div>
 </template>

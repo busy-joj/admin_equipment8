@@ -4,7 +4,7 @@
     </div><!-- /.input-box -->
 
     <div class="btn-box-sign">
-        <div class="btn-login">
+        <div class="btn-sign-in">
         <BasicButton :class="{gray2 : true, lg: true, mn: true}" @click="signInSubmit">로그인</BasicButton>
         </div>
         <div class="btn-other">
@@ -59,9 +59,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input-box{margin-bottom:40px;}
+.input-box{margin-top:48px;}
 .btn-box-sign{
-    .btn-login{
+    .btn-sign-in{
         .btn{font-weight:normal;font-size:16px;line-height:14px;}
     }
     .btn-other{text-align: center;margin-top:32px;

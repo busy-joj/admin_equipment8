@@ -1,11 +1,10 @@
 <template>
   <div class="sign-container"> 
     <div class="inner">
-      dd
       <FormSignTop />
       <FormSignUp />
     </div><!-- /.inner -->
-  </div><!-- /.login-container -->
+  </div><!-- /.sign-container -->
 </template>
 
 <script>

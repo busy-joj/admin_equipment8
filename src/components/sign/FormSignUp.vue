@@ -1,90 +1,89 @@
 <template>
     <div class="input-box">
-        <div class="id" :class="{'on' : id.isFocus}">
-            <input type="number" @focus="id.isFocus = true"  @blur="id.isFocus = false" class="form-control" id="myName" placeholder="사번" v-model="id.userID">
-            <IconButton v-if="id.userID !== null" :class="{close : true}" @click="id.userID = null"></IconButton>
-        </div>
-        <div class="pw" :class="{'on' : pw.isFocus}">
-            <input type="password" @focus="pw.isFocus = true"  @blur="pw.isFocus = false" class="form-control" id="myPw" placeholder="비밀번호" v-model="pw.userPW">
-            <IconButton v-if="pw.userPW !== null" :class="{close : true}" @click="pw.userPW = null"></IconButton>
-        </div>
-        <div class="keep">
-            <input type="checkbox" id="keep" name="logKeep" value="off">
-            <label for="keep" class="txt">로그인 상태 유지</label>
-        </div>
+        <form @submit="signUpSubmit" class="input-box-signUp">
+            <div>
+                <label for="nameSignUp">이름</label>
+                <input type="text" v-model="nameSignUp" id="nameSignUp" class="form-control"  required>
+            </div>
+            <div>
+                <label for="emailSignUp">회사 이메일</label>
+                <input type="email" v-model="emailSignUp" id="emailSignUp" class="form-control"  required>
+            </div>
+            <div>
+                <label for="contactSignUp">휴대전화<span>-없이 입력</span></label>
+                <input type="number" v-model="contactSignUp" id="contactSignUp" class="form-control"  required>
+            </div>
+            <div>
+                <label for="idSignUp">사번<span>5자리 입력</span></label>
+                <input type="number" v-model="idSignUp" id="idSignUp" class="form-control" required>
+            </div> 
+            <div>
+                <label for="pwSignUp">비밀번호<span>최소 4글자 이상 입력</span></label>
+                <input type="password" v-model="pwSignUp" id="pwSignUp" class="form-control"  required>
+            </div>    
+            <div>
+                <label for="pwConfirm">비밀번호<span>최소 4글자 이상 입력</span></label>
+                <input type="password" v-model="pwConfirm" id="pwConfirm" class="form-control"  required>
+            </div>
+
+            <div class="btn-sign-up">
+                <BasicButton :class="{gray2 : true, lg: true, mn:true}" type="submit">계정 등록</BasicButton>
+            </div>
+        </form>
+        <!-- /.input-signUp> -->
     </div><!-- /.input-box -->
-
-    <div class="btn-box-sign"> 
-        <div class="btn-sign-up">
-        <BasicButton :class="{gray2 : true, lg: true}" @click="SignUpSubmit" >계정등록</BasicButton>
-        <!-- <BasicButton :class="{gray2 : true, lg: true}" @click="loginSubmit">로그인</BasicButton> -->
-        </div>
-
-    </div><!-- /.btn-box -->
 </template>
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
-import IconButton from '~/components/basic/IconButton'
 
 export default {
     components:{
-        BasicButton,
-        IconButton
+        BasicButton
     },
     data(){
         return{
-            id:{
-                userID :null,
-                isFocus :false
-            },
-            pw:{
-                userPW :null,
-                isFocus :false
-            }
+            nameSignUp:"",
+            emailSignUp:"",
+            contactSignUp:"",
+            idSignUp:"",
+            pwSignUp:"",
+            pwConfirm:""
+        }
+    },
+    methods:{
+        signUpSubmit(){
+            console.log(
+                this.nameSignUp,
+                this.emailSignUp,
+                this.contactSignUp,
+                this.idSignUp,
+                this.pwSignUp,
+                this.pwConfirm
+            )
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    .input-box{margin-bottom:24px;
-        div{position:relative;
-        &:first-child{margin-bottom:8px;}
-        &.id::before{position:absolute;content:'';width:16px;height:16px;top:14px;left:12px;background: url(~/assets/icon-user.png) no-repeat;background-size:100%;}
-        &.pw::before{position:absolute;content:'';width:16px;height:16px;top:14px;left:12px;background: url(~/assets/icon-info-2.png) no-repeat;background-size:100%;}
+.input-box{margin:40px 0 0 0;
+    div{position:relative;margin-top:24px;
+        &:first-child{margin-top:0px;}
         &.on::before{filter: brightness(0%);}
-        input{padding:12px 40px;font-size:14px;color:$M-black;
+        input.form-control{padding:12px 16px !important;font-size:14px;color:$M-black;height:42px;
             &::placeholder{color:$M-gray4}
             &:focus{
                 border-color: $primary;
                 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);
             }
         }
-        &.keep{margin-top:12px;
-            input[type="checkbox"]{display:none;
-                & + label{position:relative;padding:0 0 0 32px;font-size:14px;color:$M-gray4;cursor:pointer;
-                    &::before{position:absolute;content:'';width:15px;height:15px;border-radius:50%;top:3px;left:0;background:url(~/assets/ico-check-set.png);background-position:0px 0px;background-size:100%;}
-                }
-                &:checked+label{
-                    &::before{background-position:0px 15px;}
-                }
-            }
+        label{display:flex;font-size:14px;color:$M-gray5;margin-bottom:8px;justify-content: space-between;
+            span{color:$M-gray4;}
         }
-        .btn.close{width:16px;height:16px;background-color:$M-gray3;position:absolute;top:14px;right:12px;}
+        &.btn-sign-up{margin:40px 0 0 0;
+            .btn{font-weight:normal;font-size:16px;line-height:14px;}
         }
     }
-
-    .btn-box-sign{
-        .btn-login{
-            .btn{font-weight:normal;}
-        }
-        .btn-other{text-align: center;margin-top:24px;
-            a{text-decoration: none;font-size:12px;color:$M-gray4;
-            + a{margin-left:19px;position:relative;
-                &::before{position:absolute;content:'';width:1px;height:9px;background:$M-gray4;top:3px;left:-8px;}
-            }
-            }
-        }
-    }
+}
 </style>
