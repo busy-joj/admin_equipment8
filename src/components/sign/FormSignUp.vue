@@ -3,31 +3,31 @@
         <form @submit="signUpSubmit" class="input-box-signUp">
             <div>
                 <label for="nameSignUp">이름</label>
-                <input type="text" v-model="nameSignUp" id="nameSignUp" class="form-control"  required>
+                <input type="text" v-model="signUpData.nameSignUp" id="nameSignUp" class="form-control"  required>
             </div>
             <div>
                 <label for="emailSignUp">회사 이메일</label>
-                <input type="email" v-model="emailSignUp" id="emailSignUp" class="form-control"  required>
+                <input type="email" v-model="signUpData.emailSignUp" id="emailSignUp" class="form-control"  required>
             </div>
             <div>
                 <label for="contactSignUp">휴대전화<span>-없이 입력</span></label>
-                <input type="number" v-model="contactSignUp" id="contactSignUp" class="form-control"  required>
+                <input type="number" v-model="signUpData.contactSignUp" id="contactSignUp" class="form-control"  required>
             </div>
             <div>
                 <label for="idSignUp">사번<span>5자리 입력</span></label>
-                <input type="number" v-model="idSignUp" id="idSignUp" class="form-control" required>
+                <input type="number" v-model="signUpData.idSignUp" id="idSignUp" class="form-control" required>
             </div> 
             <div>
                 <label for="pwSignUp">비밀번호<span>최소 4글자 이상 입력</span></label>
-                <input type="password" v-model="pwSignUp" id="pwSignUp" class="form-control"  required>
+                <input type="password" v-model="signUpData.pwSignUp" id="pwSignUp" class="form-control"  required>
             </div>    
             <div>
                 <label for="pwConfirm">비밀번호<span>최소 4글자 이상 입력</span></label>
-                <input type="password" v-model="pwConfirm" id="pwConfirm" class="form-control"  required>
+                <input type="password" v-model="signUpData.pwConfirm" id="pwConfirm" class="form-control"  required>
             </div>
 
             <div class="btn-sign-up">
-                <BasicButton :class="{gray2 : true, lg: true, mn:true}" type="submit">계정 등록</BasicButton>
+                <BasicButton :class="{primary : true, lg: true, mn:true}" type="submit" :disabled="btnDisabled">계정 등록</BasicButton>
             </div>
         </form>
         <!-- /.input-signUp> -->
@@ -43,23 +43,34 @@ export default {
     },
     data(){
         return{
-            nameSignUp:"",
-            emailSignUp:"",
-            contactSignUp:"",
-            idSignUp:"",
-            pwSignUp:"",
-            pwConfirm:""
+            signUpData:{
+                nameSignUp:"",
+                emailSignUp:"",
+                contactSignUp:"",
+                idSignUp:"",
+                pwSignUp:"",
+                pwConfirm:""
+            },
+            btnDisabled:true
+        }
+    },
+    watch:{
+        signUpData:{
+            handler(e){
+                e.nameSignUp !== "" && e.emailSignUp !== ""  && e.contactSignUp !== "" && e.idSignUp !== "" && e.pwSignUp !== "" && e.pwConfirm !== "" ? (this.btnDisabled = false) : (this.btnDisabled = true)
+            },
+            deep: true
         }
     },
     methods:{
         signUpSubmit(){
             console.log(
-                this.nameSignUp,
-                this.emailSignUp,
-                this.contactSignUp,
-                this.idSignUp,
-                this.pwSignUp,
-                this.pwConfirm
+                this.signUpData.nameSignUp,
+                this.signUpData.emailSignUp,
+                this.signUpData.contactSignUp,
+                this.signUpData.idSignUp,
+                this.signUpData.pwSignUp,
+                this.signUpData.pwConfirm
             )
         }
     }
