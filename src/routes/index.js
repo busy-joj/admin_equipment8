@@ -9,6 +9,7 @@ import ChangePw from './ChangePw'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import SignFind from './SignFind'
+import Succesed from './Succesed'
 // import SignUp from './SignUp'
 // import SignFind from './SignFind'
 
@@ -57,8 +58,10 @@ export default createRouter({
         {
             path: '/signFind',
             component : SignFind
-            // path: '/signFind',
-            // component : SignFind
+        },
+        {
+            path: '/succesed',
+            component : Succesed
         }
     ]
 })

@@ -7,7 +7,10 @@
             </div>
             <div>
                 <label for="emailSignUp">회사 이메일</label>
-                <input type="email" v-model="signUpData.emailSignUp" id="emailSignUp" class="form-control"  required>
+                <div class="input-inside">
+                    <input type="text" v-model="signUpData.emailSignUp" id="emailSignUp" class="form-control"  required>
+                    <span class="inside-txt">@kbsmedia.co.kr</span>
+                </div>
             </div>
             <div>
                 <label for="contactSignUp">휴대전화<span>-없이 입력</span></label>
@@ -51,7 +54,9 @@ export default {
                 pwSignUp:"",
                 pwConfirm:""
             },
-            btnDisabled:true
+            btnDisabled:true,
+            succesed:false
+
         }
     },
     watch:{
@@ -64,14 +69,18 @@ export default {
     },
     methods:{
         signUpSubmit(){
+            this.succesed = true
             console.log(
                 this.signUpData.nameSignUp,
                 this.signUpData.emailSignUp,
                 this.signUpData.contactSignUp,
                 this.signUpData.idSignUp,
                 this.signUpData.pwSignUp,
-                this.signUpData.pwConfirm
+                this.signUpData.pwConfirm,
+                this.succesed
             )
+            
+
         }
     }
 }
@@ -79,22 +88,9 @@ export default {
 
 <style lang="scss" scoped>
 .input-box{margin:40px 0 0 0;
-    div{position:relative;margin-top:24px;
-        &:first-child{margin-top:0px;}
-        &.on::before{filter: brightness(0%);}
-        input.form-control{padding:12px 16px !important;font-size:14px;color:$M-black;height:42px;
-            &::placeholder{color:$M-gray4}
-            &:focus{
-                border-color: $primary;
-                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);
-            }
-        }
-        label{display:flex;font-size:14px;color:$M-gray5;margin-bottom:8px;justify-content: space-between;
-            span{color:$M-gray4;}
-        }
-        &.btn-sign-up{margin:40px 0 0 0;
-            .btn{font-weight:normal;font-size:16px;line-height:14px;}
-        }
+    &.btn-sign-up{margin:40px 0 0 0;
+        .btn{font-weight:normal;font-size:16px;line-height:14px;}
     }
 }
+
 </style>

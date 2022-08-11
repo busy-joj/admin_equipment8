@@ -5,7 +5,7 @@
 
     <div class="btn-box-sign">
         <div class="btn-sign-in">
-        <BasicButton :class="{gray2 : true, lg: true, mn: true}" @click="signInSubmit">로그인</BasicButton>
+        <BasicButton :class="{gray2 : true, lg: true, mn: true}" @click="signInSubmit" :disabled="btnDisabled">로그인</BasicButton>
         </div>
         <div class="btn-other">
             <RouterLink to="../routes/SignUp" class="btn-signup">계정 생성</RouterLink>

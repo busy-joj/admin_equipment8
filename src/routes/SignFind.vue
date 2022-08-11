@@ -4,7 +4,7 @@
       <FormSignTop />
       <FormSignFind />
     </div><!-- /.inner -->
-  </div><!-- /.login-container -->
+  </div><!-- /.sign-container -->
 </template>
 
 <script>
@@ -20,5 +20,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.sign-container{margin-top:120px;}
 </style>
