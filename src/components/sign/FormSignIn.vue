@@ -1,11 +1,28 @@
 <template>
     <div class="input-box">
-        <InputSignIn v-for="signIn in formSignIn" :key="signIn.id" :signIn="signIn"/>
+        <form @submit="signInSubmit" class="input-box-signIn needs-validation was-validated">
+            <div>
+                <input type="number" id="nameSignIn" v-model="signInData.nameSignIn" class="form-control" placeholder="사번" required>
+                <label for="nameSignIn"></label>
+                <IconButton v-if="signInData.nameSignIn !== ''" :class="{close : true}" @click="signInData.nameSignIn = ''"></IconButton>
+                <div class="invalid-feedback">이름을 다시 확인해주세요.</div>
+            </div>
+            <div>
+                <input type="password" id="pwSignIn" v-model="signInData.pwSignIn" class="form-control" placeholder="비밀번호" required>
+                <label for="pwSignIn"></label>
+                <IconButton v-if="signInData.pwSignIn !== ''" :class="{close : true}" @click="signInData.pwSignIn = ''"></IconButton>
+                <div class="invalid-feedback">비밀번호를 다시 확인해주세요.</div>
+            </div>
+            <div class="keep">
+                <input type="checkbox" id="keepSignIn" v-model="signInData.keepSignIn">
+                <label for="keepSignIn" class="txt">로그인 상태 유지</label>
+            </div>
+        </form>
     </div><!-- /.input-box -->
 
     <div class="btn-box-sign">
         <div class="btn-sign-in">
-        <BasicButton :class="{gray2 : true, lg: true, mn: true}" @click="signInSubmit" :disabled="btnDisabled">로그인</BasicButton>
+        <BasicButton :class="{primary : true, lg: true, mn: true}" @click="signInSubmit" :disabled="btnDisabled">로그인</BasicButton>
         </div>
         <div class="btn-other">
             <RouterLink to="../routes/SignUp" class="btn-signup">계정 생성</RouterLink>
@@ -16,50 +33,71 @@
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
-import InputSignIn from '~/components/sign/InputSignIn'
+import IconButton from '~/components/basic/IconButton'
 
 export default {
     components:{
         BasicButton,
-        InputSignIn
+        IconButton
     },
     data(){
         return{
-            formSignIn:[
-                {
-                    id:'username',
-                    value:null,
-                    type:'number',
-                    placeholder:'사번',
-                    isFocus:false
-                },
-                {
-                    id:'password',
-                    value:null,
-                    type:'password',
-                    placeholder:'비밀번호',
-                    isFocus:false
-                },
-                {
-                    id:'keep',
-                    value:'off',
-                    type:'ckeckbox',
-                    placeholder:'사번',
-                    isFocus:false
-                }
-            ]   
+            signInData:{
+                nameSignIn:'',
+                pwSignIn:'',
+                keepSignIn:false
+            },
+            btnDisabled:true,
+            valid:false,
+            succesed:false
+        }
+    },
+    watch:{
+        signInData:{
+            handler(e){
+                e.nameSignIn !== "" && e.pwSignIn !== "" ? (this.btnDisabled = false) : (this.btnDisabled = true)
+            },
+            deep: true
         }
     },
     methods:{
         signInSubmit(){
-            
+            console.log(
+                this.signInData.nameSignIn,
+                this.signInData.pwSignIn,
+                this.succesed
+            )
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.input-box{margin-top:48px;}
+.input-box{margin-top:48px;margin-bottom:40px;
+    .input-box-signIn{
+        input.form-control{padding:12px 40px;
+            &:focus + label{filter: brightness(0%);}    
+        }
+        label{width:16px;height:16px;top:14px;left:13px;position:absolute;
+            &[for="nameSignIn"]{background:url(~/assets/icon-user.png) no-repeat;background-size:100%;}
+            &[for="pwSignIn"]{background:url(~/assets/icon-info-2.png) no-repeat;background-size:100%;}
+        }
+        &.was-validated{
+            input:focus{box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);}
+        }
+    }
+    .keep{
+        input[type="checkbox"]{display:none;
+            & + label{width:100%;height:24px;top:0;left:0;position:relative;padding:0 0 0 32px;font-size:14px;color:$M-gray5;cursor:pointer;line-height:24px;
+                &::before{position:absolute;content:'';width:24px;height:24px;border-radius:50%;top:0px;left:0;background:url(~/assets/ico-check-set.png);background-position:0px 0px;background-size:100%;}
+            }
+            &:checked+label{
+                &::before{content:'';background-position:0px 24px;}
+            }
+        }        
+    }
+    button.btn.icon.close{width:16px;height:16px;background-color:$M-gray3;position:absolute;top:14px;right:12px;}
+}
 .btn-box-sign{
     .btn-sign-in{
         .btn{font-weight:normal;font-size:16px;line-height:14px;}
