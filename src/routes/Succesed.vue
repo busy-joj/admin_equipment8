@@ -4,7 +4,7 @@
 
         <div class="succesed-msg">
             <img src="~/assets/icon-b-check.png" alt="">
-            <p class="txt">비밀번호 변경이 완료되었습니다.</p>
+            <p class="txt">{{ succesedMsg }}</p>
         </div>
         
         <BasicButton :class="{primary : true, lg: true, mn: true}" @click="this.$router.push('SignIn')">로그인하러가기</BasicButton>
@@ -13,12 +13,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import BasicButton from '~/components/basic/BasicButton'
 
 export default {
   components:{
     BasicButton
-  }  
+  },
+  computed:{
+    ...mapState('members',[
+      'succesedMsg'
+    ])
+  }
 }
 </script>
 

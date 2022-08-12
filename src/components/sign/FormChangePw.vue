@@ -1,6 +1,6 @@
 <template>
     <div class="input-box">
-        <form @submit="changeSubmit" class="input-box-change">
+        <form @submit="changeSubmit" class="input-box-change needs-validation">
             <div>
                 <label for="nowPw">현재 비밀번호</label>
                 <input type="password" v-model="changePwData.nowPw" id="nowPw" class="form-control"  required>
@@ -36,6 +36,7 @@ export default {
                 newPwConfirm:"",
             },
             btnDisabled:true,
+            valid:false,
             succesed:false
         }
     },
@@ -49,15 +50,16 @@ export default {
     },
     methods:{
         changeSubmit(){
-            this.succesed = true
+            this.valid = true
             console.log(
                 this.changePwData.nowPw,
                 this.changePwData.newPw,
                 this.changePwData.newPwConfirm
             )
-        if(this.succesed){
+            if(this.valid){
+                this.succesed = true
                 this.$router.push('Succesed')
-            }
+            } 
         }
     }
 }
