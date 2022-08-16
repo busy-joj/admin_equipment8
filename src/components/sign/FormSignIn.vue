@@ -1,6 +1,7 @@
 <template>
     <div class="input-box">
-        <form @submit="signInSubmit" class="input-box-signIn needs-validation was-validated">
+        <!-- validate 실패시 클래스 was-validated:invalid 추가 -->
+        <form @submit="signInSubmit" class="input-box-signIn needs-validation">
             <div>
                 <input type="number" id="nameSignIn" v-model="signInData.nameSignIn" class="form-control" placeholder="사번" required>
                 <label for="nameSignIn"></label>
@@ -62,11 +63,16 @@ export default {
     },
     methods:{
         signInSubmit(){
+            this.valid = true
             console.log(
                 this.signInData.nameSignIn,
                 this.signInData.pwSignIn,
                 this.succesed
             )
+            if(this.valid){
+                this.succesed = true
+                this.$router.push('main')
+            }
         }
     }
 }

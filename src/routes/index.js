@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from './Home'
+import Main from './Main'
 import Movie from './Movie'
 import About from './About'
 import Account from './Account'
@@ -20,8 +20,8 @@ export default createRouter({
 
     routes: [
         {
-            path: '/',
-            component: Home
+            path: '/main',
+            component: Main
         },
         {
             path: '/movie',
@@ -48,7 +48,7 @@ export default createRouter({
             component: ChangePw
         },
         {
-            path: '/signin',
+            path: '/',
             component: SignIn
         },
         {

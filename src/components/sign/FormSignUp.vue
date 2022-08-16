@@ -1,6 +1,7 @@
 <template>
     <div class="input-box">
-        <form @submit="signUpSubmit" class="input-box-signUp needs-validation" :class="{ 'was-validated': valid}">
+        <!-- validate 실패시 클래스 was-validated:invalid 추가 -->
+        <form @submit="signUpSubmit" class="input-box-signUp needs-validation">
             <div>
                 <label for="nameSignUp">이름</label>
                 <input type="text" v-model="signUpData.nameSignUp" id="nameSignUp" class="form-control"  required>
@@ -75,9 +76,6 @@ export default {
         }
     },
     methods:{
-        validate(){
-
-        },
         signUpSubmit(){
             console.log(
                 this.signUpData.nameSignUp,
