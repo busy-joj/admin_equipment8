@@ -26,10 +26,6 @@
         </div>
       </div>
     </div>
-    
-    <RouterLink to="../routes/RentApply" class="btn-go-rent">
-      <BasicButton :class="{primary : true, mn: true}">대여신청<span class="selected-num">1</span></BasicButton>
-    </RouterLink>
   </div>
 
   <DetailModal v-if="showModal" class="detail-info" @closeModal="showModal = false"/>
@@ -186,10 +182,6 @@ export default {
       }
       .btn-info-detail{position:absolute;top:20px;right:16px;}
     }
-  }
-  .btn-go-rent{
-    position:absolute;top:-80px;right:0;
-    .selected-num{margin-left:5px;}
   }
 }
 </style>

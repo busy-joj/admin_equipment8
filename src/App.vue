@@ -1,13 +1,17 @@
 <template>
   <Header />
-  <RouterView />
+  <Content>
+    <RouterView />
+  </Content>
 </template>
 
 <script>
 import Header from '~/components/Header'
+import Content from '~/components/Content'
 export default{
   components:{
-    Header
+    Header,
+    Content
   }
 }
 </script>

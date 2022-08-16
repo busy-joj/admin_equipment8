@@ -53,6 +53,9 @@ import UserInfo from '~/components/UserInfo'
 
 <style lang="scss" scoped>
 header{
+  position:fixed;
+  z-index: 100;
+  width:100%;
   height:64px;
   background: #000;
   padding:0 40px;

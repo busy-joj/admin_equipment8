@@ -1,19 +1,17 @@
 <template>
     <!-- active 중복 가능 -->
     <div class="tab-nav">
-        <BasicTab v-for="(item, i) in category" :key="i"  @click="activeTab($event,i)" :class="{active : item.isActive}">{{item.text}}</BasicTab>
+        <BasicTab v-for="(tab, i) in category" :key="i"  @click="activeTab(tab,i)" :class="{active : tab.isActive}">{{ tab.text }}</BasicTab>
     </div>
-    <CardList />
 </template>
 
 <script>
 import BasicTab from '~/components/basic/BasicTab'
-import CardList from '~/components/CardList'
 
-    export default {
+
+export default {
     components:{
-        BasicTab,
-        CardList
+        BasicTab
     },
     data(){
         return{
@@ -55,14 +53,21 @@ import CardList from '~/components/CardList'
             }
     },
     methods:{
-        activeTab(e,i){
-        e.preventDefault();
-        this.category[i].isActive = !this.category[i].isActive
+        activeTab(tab, i){
+            const seleted = i
+            this.category.forEach((tab, i)=>{
+                if(i === seleted){
+                    tab.isActive = !tab.isActive
+                }else{
+                    tab.isActive = false
+                }
+            })
+            this.$emit("activeTab", tab)
         }
     }
-    }
+}
 </script>
 
 <style lang="scss" scoped>
-.tab-nav{margin-bottom:40px;}
+.tab-nav{margin-bottom:40px;position:absolute;top:6px;right:0;}
 </style>

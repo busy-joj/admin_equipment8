@@ -44,6 +44,7 @@
     "@vue/component-compiler-utils": "^3.3.0",
     "@vuepic/vue-datepicker": "^3.3.1",
     "bootstrap": "^5.2.0-beta1",
+    "element-plus": "^2.2.13",
     "url-loader": "^4.1.1",
     "vue": "^3.2.37",
     "vue-file-loader": "0.0.1",

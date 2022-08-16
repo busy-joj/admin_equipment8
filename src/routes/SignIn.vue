@@ -20,7 +20,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sign-container{
-  margin-top:256px;
-}
+
 </style>
