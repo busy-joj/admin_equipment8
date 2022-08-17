@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .detail-info{
-    position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(56,56,56,.5);display:flex;align-items:center;justify-content:center;
+    position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(56,56,56,.5);display:flex;align-items:center;justify-content:center;z-index:80;
     .modal-content{width:420px;min-height:476px;border:1px solid #d9d9d9;background:#fff;border-radius:4px;
         .modal-header{padding:24px 32px;border-bottom:.5px solid #e1e1e1; 
             .modal-title{font-size:16px;color:#242424;font-weight:600;padding:0;}
