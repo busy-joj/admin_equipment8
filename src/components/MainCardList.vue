@@ -1,16 +1,19 @@
 <template>
+<div>
   <div class="inner">
     <div class="list-card">
-      <CardItem v-for="equipment in equipmentList" :key="equipment" :equipment="equipment" @showModal="showModal=true" @click="selectEquipment($event,equipment)"/>
+      <CardItem v-for="equipment in equipmentList" :key="equipment" :equipment="equipment" @showModal="showModal=true" @click="selectEquipment($event,equipment)" @getEquipmentInfo="getEquipmentInfo"/>
     </div>
   </div>
 
-  <DetailModal v-if="showModal" class="detail-info" @closeModal="showModal = false" />
+  <DetailModal v-if="showModal" @closeModal="showModal = false" :equipmentInfo="equipmentInfo"/>
+</div>
+
 </template>
 
 <script>
 import CardItem from '~/components/CardItem'
-import DetailModal from '~/components/DetailModal'
+import DetailModal from '~/components/modal/DetailModal'
 
 export default {
   components:{
@@ -19,7 +22,8 @@ export default {
   },
   data(){
     return {
-      showModal : false
+      showModal : false,
+      equipmentInfo:[]
     }
   },
   props:{
@@ -30,6 +34,12 @@ export default {
       e.preventDefault();
       equipment.isSelected = !equipment.isSelected
       this.$emit("selectEquipment",equipment)
+    },
+    getEquipmentInfo(equipment){
+      console.log(equipment)
+      
+      this.equipmentInfo = equipment
+      console.log(this.equipmentInfo)
     }
   }
 }

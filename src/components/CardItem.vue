@@ -20,7 +20,7 @@
       </div>
     </a>
     <div class="btn-info-detail">
-      <IconButton :class="{more : true}" @click.stop="$emit('showModal')"><span class="blind">상세보기</span></IconButton>
+      <IconButton @click.stop="getEquipmentInfo(equipment)"></IconButton>
     </div>
   </div>
 </template>
@@ -49,6 +49,12 @@ export default {
                 isRented:false
             }
         }
+    }
+  },
+  methods:{
+    getEquipmentInfo(equipment){
+      this.$emit('getEquipmentInfo',equipment)
+      this.$emit('showModal')
     }
   }
 }
@@ -102,6 +108,20 @@ export default {
   &.rented{opacity: .32;pointer-events: none;
     .btn-info-detail{cursor: inherit;}
   }
-  .btn-info-detail{position:absolute;top:24px;right:16px;letter-spacing:15px;height:18px;}
+  .btn-info-detail{position:absolute;top:24px;right:16px;letter-spacing:15px;height:18px;background:url(~/assets/icon-more.png);background-size:100%;background-position:center;}
+}
+
+.apply{
+  .list-card-item{
+    &.selected{cursor: pointer;border:1px solid $M-gray4;box-shadow:4px 4px 10px rgb(0 0 0 / 4%);
+      .item-state{
+        .select{background:#fff;
+          .txt{visibility:hidden;}
+          .icon{visibility:hidden;}
+        }
+      }
+    }
+  }
+  .btn-info-detail{width:26px;height:26px;background:url(~/assets/icon-close.png);background-color:#a4a4a4;border-radius:50%;background-size:90%;background-position:center;}
 }
 </style>

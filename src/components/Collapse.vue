@@ -3,7 +3,7 @@
         <div class="apply-list">
             <h3>대여 신청할 기기목록</h3>
             <div class="apply-list-item">
-                
+                <ApplyCardList :applyList="applyList"/>
             </div>
         </div>
         <div class="apply-date">
@@ -22,10 +22,12 @@
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
+import ApplyCardList from '~/components/ApplyCardList'
 
 export default {
     components:{
-        BasicButton
+        BasicButton,
+        ApplyCardList
     },
     data(){
         return{
@@ -37,6 +39,9 @@ export default {
     props:{
         selectedNum:{
             type: Number
+        },
+        applyList:{
+            type:Array
         }
     },
     methods:{
@@ -51,12 +56,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#collapseApply.apply{position:absolute;top:0;right:0;width:688px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;
+#collapseApply.apply{position:fixed;top:64px;right:0;width:668px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;
     
     .apply-list{}
     .apply-date{margin:80px 0 0 0;}
     h3{margin-bottom:24px;}
-    .apply-btns{
+    .apply-btns{position:fixed;bottom:40px;width:588px;
         .btn-cart-submit{display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-weight:600;
             span{display:inline-block;
                 &.icon{width:24px;height:24px;background:url(~/assets/icon-cart.png) center/100% no-repeat;margin-right:8px;}
