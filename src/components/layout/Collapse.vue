@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import BasicButton from '~/components/basic/BasicButton'
 import DatePicker from '~/components/basic/DatePicker'
 import ApplyCardList from '~/components/apply/ApplyCardList'
@@ -41,10 +43,12 @@ export default {
             succeed:false
         }
     },
+    computed:{
+    ...mapState('equipments',[
+        'countItem'
+        ])
+    },
     props:{
-        selectedNum:{
-            type: Number
-        },
         applyList:{
             type:Array
         }

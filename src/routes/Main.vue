@@ -71,7 +71,8 @@ export default {
   },
   computed:{
     ...mapState('equipments',[
-      'applyList'
+      'applyList',
+      'countItem'
     ])
   },
   methods:{
@@ -83,16 +84,15 @@ export default {
         this.applyList.push(selectedItem)        
         this.$store.commit('equipments/updateState',{
           applyList : this.applyList,
-          // countItem : this.applyList.length
+          countItem : this.applyList.length
         })
       }else{
         const index = this.applyList.findIndex(equipment => equipment.id === selectedItem.id)
         this.applyList.splice(index, 1)
         this.$store.commit('equipments/updateState',{
           applyList : this.applyList,
-          // countItem : this.applyList.length
+          countItem : this.applyList.length
         })
-        this.selectedNum = this.applyList.length
       }
       console.log('main')
     }
