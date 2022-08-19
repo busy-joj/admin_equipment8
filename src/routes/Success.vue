@@ -30,7 +30,6 @@ export default {
 
 <style lang="scss" scoped>
 .sign-container{
-  margin-top:286px;
   .inner{text-align:center;
     .succesed-msg{margin-bottom:80px;
         img{width:120px;height:120px;margin-bottom:40px;}

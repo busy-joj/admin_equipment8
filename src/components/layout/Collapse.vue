@@ -20,13 +20,13 @@
         
     </div>
 
-    <BasicButton @click="collapse" :class="{primary : true, mn: true, 'btn-cart':true}" v-show="0 < selectedNum" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="accessibility" aria-controls="collapseApply"><span class="icon"></span>신청하기<span class="selected-num">{{ selectedNum }}</span></BasicButton>
+    <BasicButton @click="collapse" :class="{primary : true, mn: true, 'btn-cart':true}" v-show="0 < countItem" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="accessibility" aria-controls="collapseApply"><span class="icon"></span>신청하기<span class="selected-num">{{ countItem }}</span></BasicButton>
 </template>
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
 import DatePicker from '~/components/basic/DatePicker'
-import ApplyCardList from '~/components/ApplyCardList'
+import ApplyCardList from '~/components/apply/ApplyCardList'
 
 export default {
     components:{
@@ -38,7 +38,7 @@ export default {
         return{
             isCollapse : false,
             accessibility : false,
-            succesed:false
+            succeed:false
         }
     },
     props:{
@@ -54,7 +54,7 @@ export default {
             this.isCollapse = !this.isCollapse
         },
         applySubmit(){
-            this.$router.push('Succesed')
+            this.$router.push('Success')
         }
     }
 }
@@ -62,7 +62,6 @@ export default {
 
 <style lang="scss" scoped>
 #collapseApply.apply{position:fixed;top:64px;right:0;width:668px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;
-    
     .apply-list{}
     .apply-date{margin:80px 0 0 0;
         .datepicker-box{display:flex;}

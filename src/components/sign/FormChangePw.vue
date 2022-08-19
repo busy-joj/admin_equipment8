@@ -58,7 +58,7 @@ export default {
             )
             if(this.valid){
                 this.succesed = true
-                this.$router.push('Succesed')
+                this.$router.push('Success')
             } 
         }
     }

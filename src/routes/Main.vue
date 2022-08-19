@@ -18,27 +18,28 @@
       </template>
     </ContentBottom>
 
-    <Collapse :selectedNum="selectedNum" :applyList="applyList"/>
+    <Collapse :countItem="countItem" :applyList="applyList"/>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import ContentTop from '~/components/layout/ContentTop'
 import ContentBottom from '~/components/layout/ContentBottom'
+import Collapse from '~/components/layout/Collapse'
 
-import Search from '~/components/Search'
-import MainTabs from '~/components/MainTabs'
-import MainCardList from '~/components/MainCardList'
-import Collapse from '~/components/Collapse'
-
+import MainCardList from '~/components/main/MainCardList'
+import MainTabs from '~/components/main/MainTabs'
+import Search from '~/components/main/Search'
 
 export default {
   components:{
     ContentTop,
     ContentBottom,
-    Search,
+    Collapse,   
+    MainCardList, 
     MainTabs,
-    MainCardList,
-    Collapse
+    Search
   },
   data(){
     return{
@@ -65,8 +66,13 @@ export default {
         {id:'18', model: 'Galaxy A10 Pro',os: 'Android 112',isSelected : false,isRented: false},
         {id:'19', model: 'Galaxy A10 Pro',os: 'Android 112',isSelected : false,isRented: false}
       ],
-      applyList:[]
+      // applyList:[]
     }
+  },
+  computed:{
+    ...mapState('equipments',[
+      'applyList'
+    ])
   },
   methods:{
     activeTab(tab){
@@ -74,17 +80,32 @@ export default {
     },
     selectEquipment(selectedItem){
       if(selectedItem.isSelected){
-        this.applyList.push(selectedItem)
-        this.selectedNum = this.applyList.length
-        console.log(this.applyList)
+        this.applyList.push(selectedItem)        
+        this.$store.commit('equipments/updateState',{
+          applyList : this.applyList,
+          // countItem : this.applyList.length
+        })
       }else{
         const index = this.applyList.findIndex(equipment => equipment.id === selectedItem.id)
         this.applyList.splice(index, 1)
+        this.$store.commit('equipments/updateState',{
+          applyList : this.applyList,
+          // countItem : this.applyList.length
+        })
         this.selectedNum = this.applyList.length
-        console.log(this.applyList)
-
       }
+      console.log('main')
     }
+    // selectEquipment(selectedItem){
+    //   if(selectedItem.isSelected){
+    //     this.applyList.push(selectedItem)
+    //     this.selectedNum = this.applyList.length
+    //   }else{
+    //     const index = this.applyList.findIndex(equipment => equipment.id === selectedItem.id)
+    //     this.applyList.splice(index, 1)
+    //     this.selectedNum = this.applyList.length
+    //   }
+    // }
   }
 }
 </script>

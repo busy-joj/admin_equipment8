@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo'
-import UserInfo from '~/components/UserInfo'
+import Logo from '~/components/header/Logo'
+import UserInfo from '~/components/header/UserInfo'
     export default{
       components:{
         Logo,

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import CardItem from '~/components/CardItem'
+import CardItem from '~/components/basic/CardItem'
 import CancelModal from '~/components/modal/CancelModal'
 
 export default {

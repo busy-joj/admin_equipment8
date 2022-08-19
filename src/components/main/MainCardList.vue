@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import CardItem from '~/components/CardItem'
+import CardItem from '~/components/basic/CardItem'
 import DetailModal from '~/components/modal/DetailModal'
 
 export default {

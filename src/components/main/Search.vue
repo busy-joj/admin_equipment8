@@ -1,7 +1,7 @@
 <template>
     <div class="search-box">
         <div class="input-group mb-3">
-            <input type="text" class="form-control input-search" placeholder="검색어를 입력해 주세요." aria-label="검색어를 입력해주세요." aria-describedby="button-addon2" @input="changeKeyword" @keyup.enter="search">
+            <input type="text" class="form-control input-search" placeholder="검색어를 입력해 주세요." aria-label="검색어를 입력해주세요." aria-describedby="button-addon2" v-model="keyword" @keyup.enter="searchItem">
             <BasicButton class="primary btn-search mn" id="button-addon2">검색하기</BasicButton>
         </div>
     </div>
@@ -20,8 +20,10 @@ export default {
         }
     },
     methods:{
-        changeKeyword(e){
-            this.keyword = e.target.value
+        searchItem(){
+            this.$store.dispatch('equipments/searchEquipment',{
+                keyword : this.keyword
+            })
         }
     }
 }
