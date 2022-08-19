@@ -1,8 +1,8 @@
 <template>
   <header>
     <Logo />
-    <div class="nav nav-pills">
-      <div v-show="signIn && manager"
+    <div class="nav nav-pills" v-if="signIn && manager">
+      <div 
         v-for="nav in navigation"
         :key="nav.name"
         class="nav-item">
@@ -14,7 +14,7 @@
         </RouterLink>
       </div>
     </div>
-    <UserInfo v-show="signIn"/>
+    <UserInfo v-if="signIn"/>
   </header>
 </template>
 
@@ -28,12 +28,13 @@ import UserInfo from '~/components/UserInfo'
       },
         data(){
             return {
-                signIn:false,
-                manager:false,
+                signIn : false,
+                manager : false,
                 navigation:[
+                  // 관리자 페이지 작업후 href 수정 예정 2022-08-19 by.jyj
                     {
                         name : '장비대여',
-                        href : '/'
+                        href : '/main'
                     },
                     {
                         name : '장비관리',
@@ -64,9 +65,10 @@ header{
   display:flex;
   align-items: center;
   justify-content: space-between;
-  .nav{gap:75px;
-    .nav-link{color:#fff;padding:0;
-      &.active{color:#2c8dff;background: none;}
+  .nav{gap:72px;
+    .nav-link{color:$M-gray3;padding:0;
+      &:hover{color:$white;}
+      &.active{color:$M-primary;background: none;}
     }
   }
   

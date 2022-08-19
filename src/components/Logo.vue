@@ -1,6 +1,7 @@
 <template>
+  <!-- 로그인 전 click 되지 않도록 작업 필요 2022-08-19 by.jyj -->
   <RouterLink
-    to="/"
+    to="/main"
     class="logo">
     <h1>
       <img
