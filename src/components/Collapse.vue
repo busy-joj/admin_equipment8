@@ -8,7 +8,10 @@
         </div>
         <div class="apply-date">
             <h3>대여 기간</h3>
-            
+            <div class="datepicker-box">
+                <DatePicker/>
+            </div>
+
         </div>
         <div class="apply-btns">
             <BasicButton @click="applySubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기<span class="selected-num">{{ selectedNum }}</span></BasicButton>
@@ -22,11 +25,13 @@
 
 <script>
 import BasicButton from '~/components/basic/BasicButton'
+import DatePicker from '~/components/basic/DatePicker'
 import ApplyCardList from '~/components/ApplyCardList'
 
 export default {
     components:{
         BasicButton,
+        DatePicker,
         ApplyCardList
     },
     data(){
@@ -59,7 +64,9 @@ export default {
 #collapseApply.apply{position:fixed;top:64px;right:0;width:668px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;
     
     .apply-list{}
-    .apply-date{margin:80px 0 0 0;}
+    .apply-date{margin:80px 0 0 0;
+        .datepicker-box{display:flex;}
+    }
     h3{margin-bottom:24px;}
     .apply-btns{position:fixed;bottom:40px;width:588px;
         .btn-cart-submit{display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-weight:600;

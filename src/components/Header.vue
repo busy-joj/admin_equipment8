@@ -2,7 +2,7 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
-      <div
+      <div v-show="signIn && manager"
         v-for="nav in navigation"
         :key="nav.name"
         class="nav-item">
@@ -14,7 +14,7 @@
         </RouterLink>
       </div>
     </div>
-    <UserInfo />
+    <UserInfo v-show="signIn"/>
   </header>
 </template>
 
@@ -24,10 +24,12 @@ import UserInfo from '~/components/UserInfo'
     export default{
       components:{
         Logo,
-        UserInfo
+        UserInfo,
       },
         data(){
             return {
+                signIn:false,
+                manager:false,
                 navigation:[
                     {
                         name : '장비대여',
@@ -62,9 +64,6 @@ header{
   display:flex;
   align-items: center;
   justify-content: space-between;
-  .logo{
-    margin-right:40px;
-  }
   .nav{gap:75px;
     .nav-link{color:#fff;padding:0;
       &.active{color:#2c8dff;background: none;}

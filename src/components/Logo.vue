@@ -4,23 +4,16 @@
     class="logo">
     <h1>
       <img
-        src="~/assets/logo-w-kbsmedia.png"
-        alt="KBS미디어" /><span class="blind">KBS미디어</span>
+        src="~/assets/img-tit.png"
+        alt="디지털사업부 테스트 장비 대여" /><span class="blind">디지털사업부 테스트 장비 대여</span>
     </h1>
   </RouterLink>
 </template>
 
 <style lang="scss" scoped>
 .logo{
-    font-family: 'Oswald', sans-serif;
-    font-size: 20px;
-    color: $black;
-    text-decoration: none;
-    &:hover{
-        color:$black;
-    }
-    span{
-        color:$primary
+    h1{width:278px;
+      img{width:100%;}
     }
 }
 </style>
