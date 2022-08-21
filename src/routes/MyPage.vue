@@ -1,67 +1,51 @@
 <template>
-  <div class="container">
-    <h2>내 정보</h2>
-    <SubTabs />
-    <div class="btn-box">
-      <BasicButton :class="{white : true}">뒤로</BasicButton>
-      <BasicButton :class="{primary : true, mn: true}">수정</BasicButton>
-    </div>
-    <!-- <div class="input-list-box">
-        <InputItem v-for="item in myInputList" :key="item.id" :id="item.id" :type="item.type" :value="item.value"> {{ item.name }} </InputItem>
-    </div> -->
-  </div>
+  <ContentTop>
+    <template #h2>
+      <h2>내 정보</h2>
+    </template>   
+    <template #content>   
+      <div class="tab-nav">
+        <BasicTab
+          v-for="(tab, i) in tabs"
+          :key="i"
+          @click="activeTab(tab,i)"
+          :class="{active : tab.isActive}">
+          {{ tab.text }}
+        </BasicTab>
+      </div>
+    </template>
+  </ContentTop>
+  <ContentBottom>
+    <template #content>
+      <TabContent />
+    </template>
+  </ContentBottom>
 </template>
 
 <script>
-import SubTabs from '~/components/SubTabs'
-import BasicButton from '~/components/basic/BasicButton'
-import InputItem from '~/components/basic/InputItem'
+import ContentTop from '~/components/layout/ContentTop'
+import ContentBottom from '~/components/layout/ContentBottom'
+import TabContent from '~/components/mypage/TabContent'
+import BasicTab from '~/components/basic/BasicTab'
 
 export default {
     components : {
-        SubTabs,
-        BasicButton,
-        InputItem
-    },
+    ContentTop,
+    ContentBottom,
+    TabContent,
+    BasicTab
+},
     data(){
       return{
-        myInputList:[
-          {
-            id:'myName',
-            name : '성명',
-            type:'text',
-            value: '홍길동'
-          },
-          {
-            id:'myEmail',
-            name : '회사 이메일',
-            type:'text',
-            value: 'kbsMedia'
-          },
-          {
-            id:'myPhone',
-            name : '연락처',
-            type:'number',
-            value: '01012345678'
-          },
-          {
-            id:'myIdentification',
-            name : '사번',
-            type:'number',
-            value: '12345'
-          },
-          {
-            id:'myPw',
-            name : '비밀번호',
-            type:'password',
-            value: '000000'
-          },
-          {
-            id:'myPwConfirm',
-            name : '비밀번호 확인',
-            type:'password',
-            value: '000000'
-          },
+        tabs:[
+          { 
+              text : '계정 정보',
+              isActive : true
+          }, 
+          { 
+              text : '신청내역조회',
+              isActive : false
+          }
         ]
       }
     }
@@ -69,5 +53,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-box{top:69px;}
+h2{margin-bottom:0 !important;}
+.tab-nav{position:absolute;top:5px;right:0;}
 </style>
