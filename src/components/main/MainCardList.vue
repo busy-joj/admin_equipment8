@@ -1,14 +1,22 @@
 <template>
-<div>
-  <div class="inner">
-    <div class="list-card">
-      <CardItem v-for="equipment in equipmentList" :key="equipment" :equipment="equipment" @showModal="showModal=true" @click="selectEquipment($event,equipment)" @getEquipmentInfo="getEquipmentInfo"/>
+  <div>
+    <div class="inner">
+      <div class="list-card">
+        <CardItem
+          v-for="equipment in equipmentList"
+          :key="equipment"
+          :equipment="equipment"
+          @showModal="showModal=true"
+          @click="selectEquipment($event,equipment)"
+          @getEquipmentInfo="getEquipmentInfo" />
+      </div>
     </div>
+
+    <DetailModal
+      v-if="showModal"
+      @closeModal="showModal = false"
+      :equipment-info="equipmentInfo" />
   </div>
-
-  <DetailModal v-if="showModal" @closeModal="showModal = false" :equipmentInfo="equipmentInfo"/>
-</div>
-
 </template>
 
 <script>

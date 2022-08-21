@@ -1,8 +1,13 @@
 <template>
-    <!-- active 중복 가능 -->
-    <div class="tab-nav">
-        <BasicTab v-for="(tab, i) in category" :key="i"  @click="activeTab(tab,i)" :class="{active : tab.isActive}">{{ tab.text }}</BasicTab>
-    </div>
+  <div class="tab-nav">
+    <BasicTab
+      v-for="(tab, i) in category"
+      :key="i"
+      @click="sortingTab(tab,i)"
+      :class="{active : tab.isActive}">
+      {{ tab.text }}
+    </BasicTab>
+  </div>
 </template>
 
 <script>
@@ -53,7 +58,7 @@ export default {
             }
     },
     methods:{
-        activeTab(tab, i){
+        sortingTab(tab, i){
             const seleted = i
             this.category.forEach((tab, i)=>{
                 if(i === seleted){
@@ -62,7 +67,7 @@ export default {
                     tab.isActive = false
                 }
             })
-            this.$emit("activeTab", tab)
+            this.$emit("sortingTab", tab)
         }
     }
 }

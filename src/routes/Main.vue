@@ -1,24 +1,28 @@
 <template>
-    <ContentTop>
-      <template v-slot:h2>
-        <h2>테스트장비</h2>
-      </template>
-      <template v-slot:content>
-        <MainTabs @activeTab="activeTab"/>
-        <Search />
-      </template>
-    </ContentTop>
+  <ContentTop>
+    <template #h2>
+      <h2>테스트장비</h2>
+    </template>
+    <template #content>
+      <MainTabs @sortingTab="sortingTab" />
+      <Search />
+    </template>
+  </ContentTop>
     
-    <ContentBottom>
-      <template v-slot:h3>
-        <h3>{{ SortingTit }}</h3>
-      </template>
-      <template v-slot:content>
-        <MainCardList :equipmentList="equipmentList" @selectEquipment="selectEquipment"/>
-      </template>
-    </ContentBottom>
+  <ContentBottom>
+    <template #h3>
+      <h3>{{ SortingTit }}</h3>
+    </template>
+    <template #content>
+      <MainCardList
+        :equipment-list="equipmentList"
+        @selectEquipment="selectEquipment" />
+    </template>
+  </ContentBottom>
 
-    <Collapse :countItem="countItem" :applyList="applyList"/>
+  <Collapse
+    :count-item="countItem"
+    :apply-list="applyList" />
 </template>
 
 <script>
@@ -76,7 +80,7 @@ export default {
     ])
   },
   methods:{
-    activeTab(tab){
+    sortingTab(tab){
       this.SortingTit = tab.text
     },
     selectEquipment(selectedItem){
