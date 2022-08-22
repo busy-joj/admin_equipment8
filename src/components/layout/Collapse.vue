@@ -61,13 +61,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#collapseApply.apply{position:fixed;top:64px;right:0;width:668px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;
+#collapseApply.apply{position:fixed;top:64px;right:0;width:668px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;overflow-y:auto;
+    &::-webkit-scrollbar{display:none;}
     .apply-list{}
     .apply-date{min-height:500px;margin:80px 0 0 0;
         .datepicker-box{display:flex;gap:24px;}
     }
     h3{margin-bottom:24px;}
-    .apply-btns{position:fixed;bottom:40px;width:588px;
+    .apply-btns{position:fixed;bottom:0;width:588px;padding-bottom:40px;background:#fff;
         .btn-cart-submit{display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-weight:600;
             span{display:inline-block;
                 &.icon{width:24px;height:24px;background:url(~/assets/icon-cart.png) center/100% no-repeat;margin-right:8px;}
