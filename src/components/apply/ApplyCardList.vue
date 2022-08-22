@@ -35,6 +35,6 @@ export default {
 
 <style lang="scss" scoped>
 .inner{position:relative;
-  .list-card{display:flex;flex-wrap:wrap;justify-content:space-between;}
+  .list-card{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;}
 }
 </style>

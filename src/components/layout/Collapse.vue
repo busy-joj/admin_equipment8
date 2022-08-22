@@ -14,7 +14,7 @@
 
         </div>
         <div class="apply-btns">
-            <BasicButton @click="applySubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기<span class="selected-num">{{ selectedNum }}</span></BasicButton>
+            <BasicButton @click="applySubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기<span class="selected-num">{{ countItem }}</span></BasicButton>
             <BasicButton @click="collapse" :class="{white : true, lg:true , 'btn-cart-close':true}" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="!accessibility" aria-controls="collapseApply">닫기</BasicButton>
         </div>
         
@@ -45,13 +45,9 @@ export default {
     },
     computed:{
     ...mapState('equipments',[
-        'countItem'
+        'countItem',
+        'applyList'
         ])
-    },
-    props:{
-        applyList:{
-            type:Array
-        }
     },
     methods:{
         collapse(){
@@ -67,8 +63,8 @@ export default {
 <style lang="scss" scoped>
 #collapseApply.apply{position:fixed;top:64px;right:0;width:668px;height:100%;background:#fff;box-shadow:0px 4px 8px rgba(0,0,0,.24);z-index: 50;padding:40px;
     .apply-list{}
-    .apply-date{margin:80px 0 0 0;
-        .datepicker-box{display:flex;}
+    .apply-date{min-height:500px;margin:80px 0 0 0;
+        .datepicker-box{display:flex;gap:24px;}
     }
     h3{margin-bottom:24px;}
     .apply-btns{position:fixed;bottom:40px;width:588px;

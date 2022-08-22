@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-card-item{border:1px solid $M-gray3;border-radius:4px;position:relative;flex-basis:282px;cursor: pointer;margin-bottom:24px;box-shadow:4px 4px 10px rgb(0 0 0 / 4%);
+.list-card-item{border:1px solid $M-gray3;border-radius:4px;position:relative;flex-basis:282px;cursor: pointer;box-shadow:4px 4px 10px rgb(0 0 0 / 4%);
   a{display: block;text-decoration:none;color:$M-gray6;
     .item-info{height:92px;
       display:flex;flex-direction:column;padding:24px 16px;
