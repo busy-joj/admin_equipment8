@@ -84,4 +84,4 @@ export default {
         &.selected-num{min-width:28px;margin-left:8px;background: #fff;color:$M-primary;border:1px solid $M-primary;line-height:18px;padding:0px 8px;border-radius: 16px;}
     }    
 }
-</style>
+</style> 
