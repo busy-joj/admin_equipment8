@@ -17,7 +17,8 @@
   </ContentTop>
   <ContentBottom>
     <template #content>
-      <TabContent />
+      <MyApplyList />
+      <MyAccountInfo />
     </template>
   </ContentBottom>
 </template>
@@ -25,14 +26,16 @@
 <script>
 import ContentTop from '~/components/layout/ContentTop'
 import ContentBottom from '~/components/layout/ContentBottom'
-import TabContent from '~/components/mypage/TabContent'
+import MyAccountInfo from '~/components/mypage/MyAccountInfo'
+import MyApplyList from '~/components/mypage/MyApplyList'
 import BasicTab from '~/components/basic/BasicTab'
 
 export default {
     components : {
     ContentTop,
     ContentBottom,
-    TabContent,
+    MyAccountInfo,
+    MyApplyList,
     BasicTab
 },
     data(){
@@ -55,4 +58,7 @@ export default {
 <style lang="scss" scoped>
 h2{margin-bottom:0 !important;}
 .tab-nav{position:absolute;top:5px;right:0;}
+.content-bottom{
+  .table-box{position:absolute;}
+}
 </style>
