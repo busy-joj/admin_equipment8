@@ -16,9 +16,8 @@
     </template>
   </ContentTop>
   <ContentBottom>
-    <template #content>
-      <MyApplyList />
-      <MyAccountInfo />
+    <template #content >
+      <component :is="currentView"></component>
     </template>
   </ContentBottom>
 </template>
@@ -32,25 +31,41 @@ import BasicTab from '~/components/basic/BasicTab'
 
 export default {
     components : {
-    ContentTop,
-    ContentBottom,
-    MyAccountInfo,
-    MyApplyList,
-    BasicTab
-},
+        ContentTop,
+        ContentBottom,
+        MyAccountInfo,
+        MyApplyList,
+        BasicTab
+    },
     data(){
       return{
         tabs:[
           { 
               text : '계정 정보',
-              isActive : true
+              isActive : true,
+              content:'MyAccountInfo'
           }, 
           { 
               text : '신청내역조회',
-              isActive : false
+              isActive : false,
+              content:'MyApplyList'
           }
-        ]
+        ],
+        currentView:'MyAccountInfo'
       }
+    },
+    methods:{
+        activeTab(tab, i){
+            const seleted = i
+            this.tabs.forEach((tab, i)=>{
+                if(i === seleted){
+                    tab.isActive = true
+                }else{
+                    tab.isActive = false
+                }
+            })
+            this.currentView = tab.content
+        }
     }
 }
 </script>
@@ -61,4 +76,5 @@ h2{margin-bottom:0 !important;}
 .content-bottom{
   .table-box{position:absolute;}
 }
+.show{display: block;}
 </style>
