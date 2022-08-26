@@ -12,22 +12,60 @@ $M-black:#000000;
 $M-navy:#000000;
 $M-red:#ff0000;
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 360px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1920px,
+  xxl: 2000px
+);
+
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1200px
-) !default;
+  sm: 328px,
+  md: 736px,
+  lg: 976px,
+  xl: 1200px,
+  xxl: 1320px
+);
+
+$pc:1919px;	
+$laptop:1023px;
+$landscape:767px;
+$portrait:359px;
+
+@mixin base{
+	@media(max-width:#{$pc}){
+		@content;
+	}
+}
+@mixin tablet{
+	@media(max-width:#{$laptop}){
+		@content;
+	}
+}
+@mixin landscape{
+	@media(max-width:#{$landscape}){
+		@content;
+	}
+}
+@mixin portrait{
+	@media(max-width:#{$portrait}){
+		@content;
+	}
+}
 
 #app{display:flex;height:100vh;flex-direction: column;}
 h2{font-weight: 600 !important;margin-bottom:32px !important;letter-spacing: -.03rem;}
 h3{font-size:24px;font-weight: 600 !important;letter-spacing: -.03rem;line-height:44px !important;}
+
+
 .container{
-    position:relative;
-    padding-right:0 !important;
-    padding-left:0 !important;
+  position:relative;
+  padding-right:0 !important;
+  padding-left:0 !important;
 }
+
 .blind {
     position: absolute !important;
     width: 1px !important;
@@ -65,7 +103,13 @@ input[type=number] {
 }
 
 .sign-container{display:flex;flex-direction:column;align-items:center;justify-content: center;flex:1;background:$M-gray1;
-  .inner{width:360px;}
+  @include landscape{justify-content: flex-start;padding:96px 0;}
+  .inner{width:360px;
+    @include landscape{width:328px;}
+    .input-box{
+      @include landscape{margin-top:64px;}
+    }
+  }
 }
 
 .input-box{
