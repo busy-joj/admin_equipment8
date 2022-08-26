@@ -7,5 +7,6 @@
 <style lang="scss" scoped>
     .top-box{
         width:326px;height:48px;background: url(~/assets/logo-c-kbsmedia.png) no-repeat;background-size:100%;margin:0 auto;
+        @include landscape{width:163px;height:24px;}
     }
 </style>

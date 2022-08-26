@@ -1,5 +1,6 @@
 <template>
-  <header>
+  <header :class="{'center':!signIn}"> <!-- 로그인 상태에서는 class="center" false -->
+
     <Logo />
     <div class="nav nav-pills" v-if="signIn && manager">
       <div 
@@ -65,6 +66,10 @@ header{
   display:flex;
   align-items: center;
   justify-content: space-between;
+  &.center{
+    @include landscape{justify-content: center;}
+  }
+
   .nav{gap:72px;
     .nav-link{color:$M-gray3;padding:0;
       &:hover{color:$white;}
