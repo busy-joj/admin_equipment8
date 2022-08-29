@@ -11,7 +11,6 @@
           <BasicButton :class="{primary : true, lg: true, mn: true}" @click="this.$router.push('SignIn')">로그인하러가기</BasicButton>
           <BasicButton :class="{white : true, lg: true, mn: true}" >로그인하러가기</BasicButton>
         </div>
-
     </div><!-- /.inner -->
   </div><!-- /.sign-container -->
 </template>

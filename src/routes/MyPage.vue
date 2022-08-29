@@ -8,6 +8,7 @@
         <BasicTab
           v-for="(tab, i) in tabs"
           :key="i"
+          :tab="tab"
           @click="activeTab(tab,i)"
           :class="{active : tab.isActive}">
           {{ tab.text }}
@@ -72,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 h2{margin-bottom:0 !important;}
-.tab-nav{position:absolute;top:5px;right:0;}
+.tab-nav{position:absolute;top:5px;right:0;display: flex;gap:4px;}
 .content-bottom{
   .table-box{position:absolute;}
 }
