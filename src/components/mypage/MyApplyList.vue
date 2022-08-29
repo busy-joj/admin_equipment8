@@ -34,6 +34,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.table-box{}
 th{padding:13px 0;}
 </style>

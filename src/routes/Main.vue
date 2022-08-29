@@ -94,7 +94,7 @@ export default {
           countItem : this.applyList.length
         })
       }
-      console.log('main')
+      // console.log('main')
     }
     // selectEquipment(selectedItem){
     //   if(selectedItem.isSelected){
