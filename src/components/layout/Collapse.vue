@@ -14,13 +14,13 @@
 
         </div>
         <div class="apply-btns">
-            <BasicButton @click="applySubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기<span class="selected-num">{{ countItem }}</span></BasicButton>
+            <BasicButton @click="applySubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기<span class="selected-num">{{ countApplyItem }}</span></BasicButton>
             <BasicButton @click="collapse" :class="{white : true, lg:true , 'btn-cart-close':true}" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="!accessibility" aria-controls="collapseApply">닫기</BasicButton>
         </div>
         
     </div>
 
-    <BasicButton @click="collapse" :class="{primary : true, mn: true, 'btn-cart':true}" v-show="0 < countItem" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="accessibility" aria-controls="collapseApply"><span class="icon"></span>신청하기<span class="selected-num">{{ countItem }}</span></BasicButton>
+    <BasicButton @click="collapse" :class="{primary : true, mn: true, 'btn-cart':true}" v-show="0 < countApplyItem" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="accessibility" aria-controls="collapseApply"><span class="icon"></span>신청하기<span class="selected-num">{{ countApplyItem }}</span></BasicButton>
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
     },
     computed:{
     ...mapState('equipments',[
-        'countItem',
+        'countApplyItem',
         'applyList'
         ])
     },

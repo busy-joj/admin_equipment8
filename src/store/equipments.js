@@ -9,16 +9,16 @@ export default{
         successdMsg : _successdMsg,
         loading : false,
         keyword : '',
-        countItem : 0
+        countSearchItem:0,
+        countApplyItem : 0
 
     }),
     getters:{},
     mutations:{
         updateState(state, payload){
-            state.keyword = payload.keyword
-            state.applyList = payload.applyList
-            state.countItem = payload.countItem
-            console.log(state.applyList,'셀렉트')
+            Object.keys(payload).forEach(key => {
+                state[key] = payload[key]
+            })
         }
     },
     actions:{
@@ -33,7 +33,7 @@ export default{
             const res = {...payload}
             commit('updateState',{
                 applyList : res.applyList,
-                countItem : res.countItem,
+                countApplyItem : res.countApplyItem,
             })
             console.log(state.applyList,'셀렉트')
         },

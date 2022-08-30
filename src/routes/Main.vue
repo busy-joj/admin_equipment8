@@ -11,14 +11,14 @@
     
     <ContentBottom>
       <template v-slot:h3>
-        <h3>{{ SortingTit }}</h3>
+        <h3>{{ SortingTit }}<span class="num">{{ countSearchItem }}</span></h3>
       </template>
       <template v-slot:content>
         <MainCardList :equipmentList="equipmentList" @selectEquipment="selectEquipment"/>
       </template>
     </ContentBottom>
 
-    <Collapse :countItem="countItem" :applyList="applyList"/>
+    <Collapse />
 </template>
 
 <script>
@@ -66,13 +66,13 @@ export default {
         {id:'18', model: 'Galaxy A10 Pro',os: 'Android 112',isSelected : false,isRented: false},
         {id:'19', model: 'Galaxy A10 Pro',os: 'Android 112',isSelected : false,isRented: false}
       ],
-      // applyList:[]
     }
   },
   computed:{
     ...mapState('equipments',[
       'applyList',
-      'countItem'
+      'countSearchItem',
+      'countApplyItem'
     ])
   },
   methods:{
@@ -84,14 +84,14 @@ export default {
         this.applyList.push(selectedItem)        
         this.$store.commit('equipments/updateState',{
           applyList : this.applyList,
-          countItem : this.applyList.length
+          countApplyItem : this.applyList.length
         })
       }else{
         const index = this.applyList.findIndex(equipment => equipment.id === selectedItem.id)
         this.applyList.splice(index, 1)
         this.$store.commit('equipments/updateState',{
           applyList : this.applyList,
-          countItem : this.applyList.length
+          countApplyItem : this.applyList.length
         })
       }
       // console.log('main')
@@ -111,5 +111,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+h3 .num{font-size:13px;margin-left:8px;padding:2px 8px;background:$M-primary;border-radius:4px;vertical-align:bottom;color:$white;font-weight:600;}
 </style>
