@@ -5,6 +5,7 @@ const _successdMsg = '완료되었습니다.'
 export default{
     namespaced:true,
     state:()=>({
+        equipmentList: [],
         applyList : [],
         successdMsg : _successdMsg,
         loading : false,
@@ -28,14 +29,6 @@ export default{
                 keyword : res
             })
             console.log(state.keyword,'스토어')
-        },
-        selectEquipment({ state, commit }, payload){
-            const res = {...payload}
-            commit('updateState',{
-                applyList : res.applyList,
-                countApplyItem : res.countApplyItem,
-            })
-            console.log(state.applyList,'셀렉트')
         },
         rejectEquipment({ state, commit }, payload){}
     }

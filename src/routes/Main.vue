@@ -94,18 +94,7 @@ export default {
           countApplyItem : this.applyList.length
         })
       }
-      // console.log('main')
     }
-    // selectEquipment(selectedItem){
-    //   if(selectedItem.isSelected){
-    //     this.applyList.push(selectedItem)
-    //     this.selectedNum = this.applyList.length
-    //   }else{
-    //     const index = this.applyList.findIndex(equipment => equipment.id === selectedItem.id)
-    //     this.applyList.splice(index, 1)
-    //     this.selectedNum = this.applyList.length
-    //   }
-    // }
   }
 }
 </script>
