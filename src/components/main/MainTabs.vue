@@ -1,7 +1,8 @@
 <template>
     <!-- active 중복 불가 -->
     <div class="tab-nav">
-        <BasicTab v-for="(tab, i) in sortOption" :key="i" @click="activeTab(tab,i)" :tab="tab" :class="{active : tab.isActive}" >{{ tab.text }}</BasicTab>
+        <!-- <BasicTab v-for="(tab, i) in sortOption" :key="i" @click="activeTab(tab,i)" :tab="tab" :class="{active : tab.isActive}" >{{ tab.text }}</BasicTab> -->
+        <BasicTab v-for="(tab, i) in categories" :key="i"  @click="clickTab(tab, i)" :class="{active : tab.isActive}">{{ tab.text }}</BasicTab>
     </div>
 </template>
 
@@ -14,51 +15,50 @@ export default {
         BasicTab
     },
     data(){
-        return{
-            sortOption:[
+        return {
+            categories:[
                 { 
                     text : '전체',
-                    id:'option1',
-                    isActive : true
+                    code : 'all',
+                    isActive : false
                 },
                 { 
                     text : '대여가능',
-                    id:'option2',
+                    code : 'available',
                     isActive : false
                 },
                 { 
                     text : 'Android',
-                    id:'option3',                    
+                    code : 'android',
                     isActive : false
                 },
                 { 
                     text : 'iOS',
-                    id:'option4',                    
+                    code : 'ios',
                     isActive : false
                 },
                 { 
                     text : '폰',
-                    id:'option5',                    
+                    code : 'phone',
                     isActive : false
                 },
                 { 
                     text : '태블릿',
-                    id:'option6',                    
+                    code : 'tablet',
                     isActive : false
                 },
                 { 
                     text : '유심',
-                    id:'option7',                    
+                    code : 'usim',
                     isActive : false
                 },
                 { 
                     text : '기타',
-                    id:'option8',                    
+                    code : 'etc',
                     isActive : false
                 }
             ],
-                name:'sortOption'
-            }
+        }
     },
     methods:{
         activeTab(tab, i){
@@ -71,6 +71,20 @@ export default {
                 }
             })
             this.$emit("activeTab", tab)
+        },
+
+        clickTab(tab, i) {
+            console.log('MainTabs.vue clickTab', tab)
+            const selected = i
+            this.categories.forEach((tab, i) => {
+                if (i === selected) {
+                    console.log('i === selected')
+                    tab.isActive = true
+                } else {
+                    tab.isActive = false
+                }
+            })
+            this.$emit("clickTab", tab)
         }
     }
 }
