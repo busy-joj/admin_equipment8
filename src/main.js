@@ -7,9 +7,14 @@ import Datepicker from '@vuepic/vue-datepicker';
 // import 'element-plus/dist/index.css'
 // import "@/styles/main.css"
 
-createApp(App)
+import VueCookie from 'vue-cookies'
+
+const app = createApp(App)
     .component('Datepicker', Datepicker)
     // .use(ElementPlus)
     .use(router)
     .use(store)
+    .use(VueCookie)
     .mount('#app')
+
+ app.$cookies.config('1d') // 쿠키의 만료일은 1일 (글로벌 세팅)
