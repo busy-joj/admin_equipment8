@@ -2,7 +2,7 @@
     <!-- active 중복 불가 -->
     <div class="tab-nav">
         <!-- <BasicTab v-for="(tab, i) in sortOption" :key="i" @click="activeTab(tab,i)" :tab="tab" :class="{active : tab.isActive}" >{{ tab.text }}</BasicTab> -->
-        <BasicTab v-for="(tab, i) in categories" :key="i"  @click="clickTab(tab, i)" :class="{active : tab.isActive}">{{ tab.text }}</BasicTab>
+        <BasicTab v-for="(tab, i) in categories" :key="i"  @click="clickTab(tab, i)" :tab="tab" :class="{active : tab.isActive}">{{ tab.text }}</BasicTab>
     </div>
 </template>
 

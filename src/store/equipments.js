@@ -29,7 +29,7 @@ export default{
             // })
 
             state.applyList = payload.applyList
-            state.countItem = payload.countItem
+            state.countApplyItem = payload.countApplyItem
         },
 
         updateEquipmentList(state, payload) {
