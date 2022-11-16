@@ -2,7 +2,9 @@
   <header :class="{'center':!signIn}"> <!-- 로그인 상태에서는 class="center" false -->
 
     <Logo />
-    <div class="nav nav-pills" v-if="signIn && manager">
+    <div
+      class="nav nav-pills"
+      v-if="loggedIn && administrator">
       <div 
         v-for="nav in navigation"
         :key="nav.name"
@@ -15,43 +17,51 @@
         </RouterLink>
       </div>
     </div>
-    <UserInfo v-if="signIn"/>
+    <UserInfo v-if="loggedIn" />
   </header>
 </template>
 
 <script>
 import Logo from '~/components/header/Logo'
 import UserInfo from '~/components/header/UserInfo'
+
+import { mapState } from 'vuex'
+
     export default{
       components:{
         Logo,
         UserInfo,
       },
-        data(){
-            return {
-                signIn : false,
-                manager : false,
-                navigation:[
-                  // 관리자 페이지 작업후 href 수정 예정 2022-08-19 by.jyj
-                    {
-                        name : '장비대여',
-                        href : '/main'
-                    },
-                    {
-                        name : '장비관리',
-                        href : '/movie'
-                    },
-                    {
-                        name : '수령확인',
-                        href : '/about'
-                    },
-                    {
-                        name : '계정관리',
-                        href : '/account'
-                    }
-                ]
-            }
-        }
+      data() {
+          return {
+              manager : false,
+              navigation:[
+                // 관리자 페이지 작업후 href 수정 예정 2022-08-19 by.jyj
+                  {
+                      name : '장비대여',
+                      href : '/main'
+                  },
+                  {
+                      name : '장비관리',
+                      href : '/movie'
+                  },
+                  {
+                      name : '수령확인',
+                      href : '/about'
+                  },
+                  {
+                      name : '계정관리',
+                      href : '/account'
+                  }
+              ]
+          }
+      },
+      computed:{
+      ...mapState('members',[
+            'loggedIn',
+            'administrator'
+          ])
+      },
     }
 </script>
 

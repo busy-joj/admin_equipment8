@@ -48,11 +48,12 @@
     "element-plus": "^2.2.13",
     "url-loader": "^4.1.1",
     "vue": "^3.2.37",
+    "vue-cookies": "^1.8.1",
     "vue-file-loader": "0.0.1",
     "vue-router": "^4.0.16",
     "vue3-datepicker": "^0.3.4",
     "vuetify": "^2.6.9",
     "vuex": "^4.0.2",
-    "vue-cookies": "^1.8.1"
+    "vuex-persistedstate": "^4.1.0"
   }
 }

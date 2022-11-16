@@ -36,8 +36,6 @@
 import BasicButton from '~/components/basic/BasicButton'
 import IconButton from '~/components/basic/IconButton'
 
-import { api } from '~/api/api'
-
 export default {
     components:{
         BasicButton,
@@ -65,26 +63,32 @@ export default {
     },
     methods:{
         signInSubmit(){
-            // this.valid = true
-            // console.log(
-            //     this.signInData.nameSignIn,
-            //     this.signInData.pwSignIn,
-            //     this.succesed
-            // )
-            // if(this.valid){
-            //     this.succesed = true
-            //     this.$router.push('main')
-            // }
-
             this.$store.dispatch('members/LOGIN', this.signInData).then(response => {
                 console.log('signInSubmit response', response)
                 this.valid = true
-                this.$cookies.set("accessToken", response.access_token)
-                this.$router.push('main')
+                this.$router.replace('main')
             }).catch(error => {
                 console.log('catch error', error)
                 this.valid = false
-                alert('INTERNAL SERVER ERROR') // etc: Server Shutdown
+                if (error) {
+                    console.log('error', error)
+                    if (error.details) {
+                        console.log('error.details', error.details)
+                        error.details.forEach((target, i) => {
+                            console.log('error.details target: ' + target.field + ' | index: ' + i)
+                            if (target.field == 'empno') {
+                                alert(target.message)
+                            }
+                            if (target.field == 'password') {
+                                alert(target.message)
+                            }
+                        })
+                    } else {
+                        alert(error.message)
+                    }
+                } else {
+                    alert('INTERNAL SERVER ERROR') 
+                }
             })
         }
     }
