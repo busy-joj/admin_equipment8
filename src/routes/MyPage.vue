@@ -10,15 +10,16 @@
           :key="i"
           :tab="tab"
           @click="activeTab(tab,i)"
-          :class="{active : tab.isActive}">
+          :class="{active : tab.isActive}"
+          ref="basicTab">
           {{ tab.text }}
         </BasicTab>
       </div>
     </template>
   </ContentTop>
   <ContentBottom>
-    <template #content >
-      <component :is="currentView"></component>
+    <template #content>
+      <component :is="currentView" />
     </template>
   </ContentBottom>
 </template>
@@ -38,9 +39,9 @@ export default {
         MyApplyList,
         BasicTab
     },
-    data(){
-      return{
-        tabs:[
+    data() {
+      return {
+        tabs: [
           { 
               text : '계정 정보',
               isActive : true,
@@ -52,21 +53,37 @@ export default {
               content:'MyApplyList'
           }
         ],
-        currentView:'MyAccountInfo'
+        currentView: 'MyAccountInfo'
       }
     },
-    methods:{
-        activeTab(tab, i){
-            const seleted = i
-            this.tabs.forEach((tab, i)=>{
-                if(i === seleted){
-                    tab.isActive = true
-                }else{
-                    tab.isActive = false
-                }
-            })
-            this.currentView = tab.content
+    mounted() {
+      console.log('MyPage.vue mounted')
+      console.log(this.$route.query.tab)
+      if ('MyApplyList' == this.$route.query.tab) {
+        this.handleFromRentRequestDone()
+      }
+      
+    },
+    methods: {
+        handleFromRentRequestDone() {
+          console.log('MyPage.vue methods handleFromRentRequestDone')
+          this.activeTab(this.tabs[1], 1)
+        },
+
+        activeTab(tab, i) {
+          console.log('MyPage.vue methods activeTab', tab, 'index', i)
+          const seleted = i
+          this.tabs.forEach((tab, i)=>{
+              if(i === seleted){
+                  tab.isActive = true
+              }else{
+                  tab.isActive = false
+              }
+          })
+          this.currentView = tab.content
         }
+
+        
     }
 }
 </script>

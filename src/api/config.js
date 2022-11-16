@@ -1,6 +1,3 @@
-// export const API_URL = process.env.BASE_URL
-export const API_URL = 'http://localhost:9090/'
-
 // api list structure
 export const API = {
     // 일반사용자 > 로그인 (JWT 토큰 발급)
@@ -14,4 +11,7 @@ export const API = {
 
     // 일반사용자 > 대시보드 > 메인 > 기본 : 대여 신청하기
     requestEquipmentRental: (userId) => `dashboard/general-user/users/${userId}/rentals/request`,
+
+    // 일반사용자 > 대시보드 > 앱바 > 내 정보 : 신청 내역 조회
+    getRentalHistory: (userId) => `dashboard/general-user/users/${userId}/rentals/history`,
 }

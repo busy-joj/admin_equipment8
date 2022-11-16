@@ -1,26 +1,54 @@
 <template>
-    <div id="collapseApply" :class="{'collapse':true,'apply':true,'show':isCollapse}">
-        <div class="apply-list">
-            <h3>대여 신청할 기기목록</h3>
-            <div class="apply-list-item">
-                <ApplyCardList :applyList="applyList"/>
-            </div>
-        </div>
-        <div class="apply-date">
-            <h3>대여 기간</h3>
-            <div class="datepicker-box">
-                <DatePicker/>
-            </div>
-
-        </div>
-        <div class="apply-btns">
-            <BasicButton @click="applySubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기<span class="selected-num">{{ countApplyItem }}</span></BasicButton>
-            <BasicButton @click="collapse" :class="{white : true, lg:true , 'btn-cart-close':true}" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="!accessibility" aria-controls="collapseApply">닫기</BasicButton>
-        </div>
-        
+  <div
+    id="collapseApply"
+    :class="{'collapse':true,'apply':true,'show':isCollapse}">
+    <div class="apply-list">
+      <h3>대여 신청할 기기목록</h3>
+      <div class="apply-list-item">
+        <ApplyCardList
+          :apply-list="applyList"
+          @triggerCollapse="handleCollapsed"
+          @deleteEquipment="handleDeleteEquipment" />
+      </div>            
     </div>
+    <div class="apply-date">
+      <h3>대여 기간</h3>
+      <div class="datepicker-box">
+        <DatePicker 
+          :start-date="startDate" 
+          :end-date="endDate" 
+          @onChangeDatePicker="onChangeDatePicker" />
+      </div>
+    </div>
+    <div class="apply-btns">
+      <BasicButton
+        @click="handleSubmit"
+        :class="{primary : true, lg:true , 'btn-cart-submit':true}"
+        type="submit">
+        <span class="icon"></span>신청하기<span class="selected-num">{{ countApplyItem }}</span>
+      </BasicButton>
+      <BasicButton
+        @click="handleCollapsed"
+        :class="{white : true, lg:true , 'btn-cart-close':true}"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseApply"
+        :aria-expanded="!accessibility"
+        aria-controls="collapseApply">
+        닫기
+      </BasicButton>
+    </div>
+  </div>
 
-    <BasicButton @click="collapse" :class="{primary : true, mn: true, 'btn-cart':true}" v-show="0 < countApplyItem" data-bs-toggle="collapse" data-bs-target="#collapseApply" :aria-expanded="accessibility" aria-controls="collapseApply"><span class="icon"></span>신청하기<span class="selected-num">{{ countApplyItem }}</span></BasicButton>
+  <BasicButton
+    @click="handleCollapsed"
+    :class="{primary : true, mn: true, 'btn-cart':true}"
+    v-show="0 < countApplyItem"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseApply"
+    :aria-expanded="accessibility"
+    aria-controls="collapseApply">
+    <span class="icon"></span>신청하기<span class="selected-num">{{ countApplyItem }}</span>
+  </BasicButton>
 </template>
 
 <script>
@@ -29,6 +57,9 @@ import { mapState } from 'vuex'
 import BasicButton from '~/components/basic/BasicButton'
 import DatePicker from '~/components/basic/DatePicker'
 import ApplyCardList from '~/components/apply/ApplyCardList'
+
+import { isProxy, toRaw } from 'vue'
+// import VueCookies from 'vue-cookies'
 
 export default {
     components:{
@@ -40,7 +71,9 @@ export default {
         return{
             isCollapse : false,
             accessibility : false,
-            succeed:false
+            succeed:false,
+            startDate: new Date(),
+            endDate: new Date()
         }
     },
     computed:{
@@ -53,9 +86,78 @@ export default {
         collapse(){
             this.isCollapse = !this.isCollapse
         },
-        applySubmit(){
-            this.$router.push('Success')
-        }
+        handleSubmit(){
+            console.log('Collapse.vue handleSubmit')
+
+            let deviceIds = []
+
+            let rawData = this.applyList
+
+            if (isProxy(rawData)) {
+                rawData = toRaw(rawData)
+            }
+
+            rawData.forEach((device) => {
+                deviceIds.push(device.id)
+            })
+
+            // const accessToken = VueCookies.get('accessToken')
+            const accessToken = localStorage.getItem('access_token')
+
+            if (accessToken) {
+                const decoded = this.$parseJwt(accessToken)
+                const params = {
+                    userId: Number(decoded.uid),
+                    deviceIds: deviceIds,
+                    startDate: this.$formatDate(this.startDate),
+                    endDate: this.$formatDate(this.endDate),
+                }
+
+                this.$store.dispatch('equipments/EQUIPMENT_RENTAL_REQUEST', params)
+                .then(response => {
+                    console.log('Collapse.vue handleSubmit Success then response', response)
+                    this.$router.replace('/rent/request/done')
+                }).catch(error => {
+                    console.log('11111 catch error', error)
+                    if (error.details) {
+                        error.details.forEach((target, i) => {
+                            console.log('error.details target: ' + target.message + ' | index: ' + i)
+                        })
+                    }
+                })
+            }
+
+        },
+
+        handleCollapsed() {
+            console.log('Collapse.vue handleCollapsed')
+            this.isCollapse = !this.isCollapse
+        },
+
+        /**
+         * <해당 기기를 신청 목록에서 삭제하시겠습니까?> 모달 내부 삭제 버튼 액션 수행
+         *
+         * @param {Object} selectedItem 대여 신청할 기기목록 중 신청 목록에서 삭제할 기기
+         */
+         handleDeleteEquipment(selectedItem) {
+            console.log('Collapse.vue handleDeleteEquipment')
+            selectedItem.isSelected = false
+            this.$emit('deleteEquipment', selectedItem)
+        },
+
+        /**
+         * DatePicker 대여 기간 변경 시 액션 수행
+         *
+         * @param {Date} date 변경할 대여 기간 (시작일, 종료일)
+         */
+        onChangeDatePicker(date) {
+            console.log('Collapse.vue onChangeDatePicker date', date)
+            this.startDate = date.start
+            this.endDate = date.end
+        },
+
+        
+
     }
 }
 </script>
