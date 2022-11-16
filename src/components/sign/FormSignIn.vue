@@ -3,19 +3,19 @@
         <!-- validate 실패시 클래스 was-validated:invalid 추가 -->
         <form @submit="signInSubmit" class="input-box-signIn needs-validation">
             <div>
-                <input type="number" id="nameSignIn" v-model="signInData.nameSignIn" class="form-control" placeholder="사번" required>
+                <input type="number" id="nameSignIn" v-model="signInData.empno" class="form-control" placeholder="사번" required>
                 <label for="nameSignIn"></label>
-                <IconButton v-if="signInData.nameSignIn !== ''" :class="{close : true}" @click="signInData.nameSignIn = ''"></IconButton>
+                <IconButton v-if="signInData.empno !== ''" :class="{close : true}" @click="signInData.empno = ''"></IconButton>
                 <div class="invalid-feedback">이름을 다시 확인해주세요.</div>
             </div>
             <div>
-                <input type="password" id="pwSignIn" v-model="signInData.pwSignIn" class="form-control" placeholder="비밀번호" required>
+                <input type="password" id="pwSignIn" v-model="signInData.password" class="form-control" placeholder="비밀번호" required>
                 <label for="pwSignIn"></label>
-                <IconButton v-if="signInData.pwSignIn !== ''" :class="{close : true}" @click="signInData.pwSignIn = ''"></IconButton>
+                <IconButton v-if="signInData.password !== ''" :class="{close : true}" @click="signInData.password = ''"></IconButton>
                 <div class="invalid-feedback">비밀번호를 다시 확인해주세요.</div>
             </div>
             <div class="keep">
-                <input type="checkbox" id="keepSignIn" v-model="signInData.keepSignIn">
+                <input type="checkbox" id="keepSignIn" v-model="signInData.rememberMe">
                 <label for="keepSignIn" class="txt">로그인 상태 유지</label>
             </div>
         </form>
@@ -44,9 +44,9 @@ export default {
     data(){
         return{
             signInData:{
-                nameSignIn:'',
-                pwSignIn:'',
-                keepSignIn:false
+                empno:'',
+                password:'',
+                rememberMe:false
             },
             btnDisabled:true,
             valid:false,
@@ -56,23 +56,40 @@ export default {
     watch:{
         signInData:{
             handler(e){
-                e.nameSignIn !== "" && e.pwSignIn !== "" ? (this.btnDisabled = false) : (this.btnDisabled = true)
+                e.empno !== "" && e.password !== "" ? (this.btnDisabled = false) : (this.btnDisabled = true)
             },
             deep: true
         }
     },
     methods:{
         signInSubmit(){
-            this.valid = true
-            console.log(
-                this.signInData.nameSignIn,
-                this.signInData.pwSignIn,
-                this.succesed
-            )
-            if(this.valid){
-                this.succesed = true
-                this.$router.push('main')
-            }
+            this.$store.dispatch('members/LOGIN', this.signInData).then(response => {
+                console.log('signInSubmit response', response)
+                this.valid = true
+                this.$router.replace('main')
+            }).catch(error => {
+                console.log('catch error', error)
+                this.valid = false
+                if (error) {
+                    console.log('error', error)
+                    if (error.details) {
+                        console.log('error.details', error.details)
+                        error.details.forEach((target, i) => {
+                            console.log('error.details target: ' + target.field + ' | index: ' + i)
+                            if (target.field == 'empno') {
+                                alert(target.message)
+                            }
+                            if (target.field == 'password') {
+                                alert(target.message)
+                            }
+                        })
+                    } else {
+                        alert(error.message)
+                    }
+                } else {
+                    alert('INTERNAL SERVER ERROR') 
+                }
+            })
         }
     }
 }

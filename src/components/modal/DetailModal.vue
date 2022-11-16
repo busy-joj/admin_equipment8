@@ -2,44 +2,44 @@
     <div class="detail-info">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{equipmentInfo.model}}</h5>
+                <h5 class="modal-title">
+                    {{ equipmentInfo.model }}
+                </h5>
             </div>
             <div class="modal-body">
                 <dl>
                     <dt>제조사</dt>
-                    <dd>삼성</dd>
+                    <dd>{{ equipmentInfo.manufacturer }}</dd>
                 </dl>
                 <dl>
                     <dt>OS</dt>
-                    <dd>{{equipmentInfo.os}}</dd>
+                    <dd>{{ equipmentInfo.os }}</dd>
                 </dl>
                 <dl>
                     <dt>장비종류</dt>
-                    <dd>폰</dd>
+                    <dd>{{ equipmentInfo.type }}</dd>
                 </dl>
                 <dl>
                     <dt>모델번호</dt>
-                    <dd>SM-960N</dd>
+                    <dd>{{ equipmentInfo.modelNumber }}</dd>
                 </dl>
                 <dl>
                     <dt>시리얼 번호</dt>
-                    <dd>R3CR10CZPOF</dd>
+                    <dd>{{ equipmentInfo.serialNumber }}</dd>
                 </dl>
                 <dl>
                     <dt>구입일(인수일)</dt>
-                    <dd>2018. 11 .12.</dd>
+                    <dd>{{ equipmentInfo.purchaseDate }}</dd>
                 </dl>
                 <dl>
                     <dt>비고</dt>
-                    <dd>구입일 모름(인수일 기재) 본사에서 구입(라디오)</dd>
+                    <dd>{{ equipmentInfo.description }}</dd>
                 </dl>
-                
             </div>
             <div class="modal-footer">
                 <!-- 클릭시 applyList[]에 담기도록 작업 필요 -->
-                <BasicButton @click="aa" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기</BasicButton>
+                <BasicButton @click="handleSubmit" :class="{primary : true, lg:true , 'btn-cart-submit':true}" type="submit"><span class="icon"></span>신청하기</BasicButton>
                 <BasicButton :class="{white : true, lg:true}" @click="$emit('closeModal')">닫기</BasicButton>
-
             </div>
         </div>
     </div>
@@ -60,16 +60,29 @@ export default {
             type:Object,
             default(){
                 return {
-                    model:'model',
-                    os: 'os',
-                    isSelected:false,
-                    isRented:false
+                    id: '0', 
+                    name: '', // 기기명
+                    manufacturer: '', // 제조사
+                    os: '', // OS
+                    type: '', // 장비종류
+                    modelNumber: '', // 모델 번호
+                    serialNumber: '', // 시리얼 번호
+                    purchaseDate: '', // 구입일(인수일)
+                    description: '', // 비고 : 구입일 모름(인수일 기재) 본사에서 구입(라디오)
+                    user: '',
+                    date: '',
+                    isSelected: false, 
+                    isRented: false,
+                    endRentalDate: '',
+                    rentalUser: ''
                 }
             }
         }
     },
     methods:{
-
+        handleSubmit() {
+            console.log('TODO')
+        }
     }
 }
 </script>

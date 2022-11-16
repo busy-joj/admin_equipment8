@@ -4,25 +4,27 @@
         <h2>테스트장비</h2>
       </template>
       <template v-slot:content>
-        <MainTabs @activeTab="activeTab"/>
-        <Search />
+        <MainTabs 
+          @clickTab="clickTab" 
+          ref="mainTab" />
+        <Search @clickSearch="clickSearch" />
       </template>
     </ContentTop>
-    
     <ContentBottom>
       <template v-slot:h3>
-        <h3>{{ SortingTit }}<span class="num">{{ countSearchItem }}</span></h3>
+        <h3>{{ criteria.tabText }}<span class="num">{{ countSearchItem }}</span></h3>
       </template>
       <template v-slot:content>
-        <MainCardList :equipmentList="equipmentList" @selectEquipment="selectEquipment"/>
+        <MainCardList 
+          :equipment-list="getEquipmentList" 
+          @selectEquipment="selectEquipment" />
       </template>
     </ContentBottom>
-
     <Collapse />
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 import ContentTop from '~/components/layout/ContentTop'
 import ContentBottom from '~/components/layout/ContentBottom'
@@ -44,7 +46,32 @@ export default {
   data(){
     return{
       SortingTit:'전체',
+      criteria : { // 검색조건
+        tabText: '',
+        tabCode: '',
+        inputSearchKeyword: '',
+        page: 0,
+        size: 100,
+        direction: 'desc'
+      },
       selectedNum : 0,
+      equipment: { 
+                id: '0', 
+                name: 'name', // 기기명
+                manufacturer: 'manufacturer', // 제조사
+                os: '', // OS
+                type: '', // 장비종류
+                modelNumber: '', // 모델 번호
+                serialNumber: '', // 시리얼 번호
+                purchaseDate: '', // 구입일(인수일)
+                description: '', // 비고 : 구입일 모름(인수일 기재) 본사에서 구입(라디오)
+                user: 'user',
+                date: 'date',
+                isSelected: false, 
+                isRented: false,
+                endRentalDate: '',
+                rentalUser: ''
+      },
       equipmentList:[
         {id:'1', model: 'Galaxy A9 Pro', os: 'Android 11', isSelected : false,isRented: true},
         {id:'2', model: 'Galaxy A9 Pro',os: 'Android 112',isSelected : false,isRented: false},
@@ -73,20 +100,30 @@ export default {
       'applyList',
       'countSearchItem',
       'countApplyItem'
+    ]),
+    ...mapGetters('equipments', [
+      'getEquipmentList',
     ])
   },
+  created() {
+    console.log("Main.vue created")
+  },
+  mounted() {
+    console.log("Main.vue mounted")
+    this.$refs.mainTab.clickTab(this, 0)
+  },
   methods:{
-    activeTab(tab){
-      this.SortingTit = tab.text
-    },
+    // activeTab(tab){
+    //   this.SortingTit = tab.text
+    // },
     selectEquipment(selectedItem){
-      if(selectedItem.isSelected){
+      if (selectedItem.isSelected) {
         this.applyList.push(selectedItem)        
         this.$store.commit('equipments/updateState',{
           applyList : this.applyList,
           countApplyItem : this.applyList.length
         })
-      }else{
+      } else {
         const index = this.applyList.findIndex(equipment => equipment.id === selectedItem.id)
         this.applyList.splice(index, 1)
         this.$store.commit('equipments/updateState',{
@@ -94,7 +131,26 @@ export default {
           countApplyItem : this.applyList.length
         })
       }
-    }
+    },
+
+    clickSearch(keyword) {
+      console.log('Main.vue clickSearch keyword', keyword)
+      this.criteria.inputSearchKeyword = keyword
+      this.fetchEquipmentList()
+    },
+
+    clickTab(tab) {
+      console.log('Main.vue clickTab tab', tab)
+      this.criteria.tabText = tab.text != null ? tab.text : '전체'
+      this.criteria.tabCode = tab.code != null ? tab.code : 'all'
+      this.fetchEquipmentList()
+    },
+
+    fetchEquipmentList() {
+      console.log('Main.vue fetchEquipmentList this.criteria', this.criteria)
+      this.$store.dispatch('equipments/EQUIPMENT_SEARCH', this.criteria)
+    },
+
   }
 }
 </script>

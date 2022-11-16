@@ -1,11 +1,15 @@
 <template>
   <div class="datapicker-box-item">
     <span class="txt">시작일</span>
-    <Datepicker v-model="startDate" />
+    <Datepicker 
+      v-model="date.start"
+      @update:modelValue="handleRentalStartDate" />
   </div>
     <div class="datapicker-box-item">
     <span class="txt">반납일</span>
-    <Datepicker v-model="endDate" />
+    <Datepicker 
+      v-model="date.end"
+      @update:modelValue="handleRentalEndDate" />
   </div>
 
 </template>
@@ -15,15 +19,43 @@ import Datepicker from "vue3-datepicker";
 
 export default {
   name: "DatePicker",
+  props: {
+    startDate: {
+      type: Date
+    },
+    endDate: {
+      type: Date
+    }
+  },
   data() {
     return {
       isFocused: false,
-      startDate: new Date(),
-      endDate: new Date()
+      date: {
+        start: new Date(),
+        end: new Date()
+      }
     };
   },
+
+  created() {
+    // props로 넘어온 값이 자식 컴포넌트에 세팅
+    this.date.start = this.startDate 
+    this.date.end = this.endDate
+  },
+
   components: {
     Datepicker,
+  },
+  methods: {
+    handleRentalStartDate() {
+      console.log('handleRentalStartDate', this.date.start)
+      this.$emit('onChangeDatePicker', this.date)
+    },
+
+    handleRentalEndDate() {
+      console.log('handleRentalEndDate', this.date.end)
+      this.$emit('onChangeDatePicker', this.date)
+    }
   }
 };
 </script>

@@ -8,8 +8,8 @@
       <div class="item-state">
         <div v-if="equipment.isRented" class="rented">
           <span class="icon"></span>
-          <span class="txt">김지현</span>
-          <span class="date">2022.06.23</span>
+          <span class="txt">{{ equipment.user }}</span>
+          <span class="date">{{ equipment.date }}</span>
         </div>
         <div v-else class="select">
           <span v-if="!equipment.isSelected" class="txt">선택하기</span>
@@ -43,10 +43,18 @@ export default {
         type:Object,
         default(){
             return {
-                model:'model',
-                os: 'os',
-                isSelected:false,
-                isRented:false
+              name: 'name', // 기기명
+              manufacturer: 'model', // 제조사
+              os: 'os', // OS
+              type: 'phone', // 장비종류
+              modelNumber: '', // 모델 번호 : SM-960N
+              serialNumber: '', // 시리얼 번호 : R3CR10CZPOF
+              purchaseDate: '', // 구입일(인수일) : 2018. 11 .12.
+              description: '', // 비고 : 구입일 모름(인수일 기재) 본사에서 구입(라디오)
+              user: 'user',
+              date: 'date',
+              isSelected: false,
+              isRented: false
             }
         }
     }

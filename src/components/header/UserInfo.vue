@@ -1,50 +1,79 @@
 <template>
   <div class="user-info">
-    <span class="name">김지현</span>
+    <span class="name">{{ user.name }}</span>
     <div class="dropdown">
-        <button class="btn" type="button" aria-expanded="false" @click="dropdown()"></button>
-        <ul class="dropdown-menu" :class="{'show' : isAddClass}">
-          <li v-for="menu in infoDropdown" :key="menu.name">
-            <RouterLink
-              :to="menu.href"
-              class="dropdown-item"
-              @click="dropdown()">
-              {{ menu.name }}
-            </RouterLink>
-          </li>
-        </ul> 
+      <button
+        class="btn"
+        type="button"
+        aria-expanded="false" 
+        @click="dropdown()"></button>
+      <ul 
+        class="dropdown-menu" 
+        :class="{'show' : isAddClass}">
+        <li
+          v-for="menu in infoDropdown" 
+          :key="menu.name">
+          <RouterLink
+            :to="menu.href"
+            class="dropdown-item"
+            @click="dropdown(menu)">
+            {{ menu.name }}
+          </RouterLink>
+        </li>
+      </ul> 
     </div>
   </div>
 </template>
 
 <script>
-export default{
-        data(){
-            return {
-                infoDropdown:[
-                // 관리자 페이지 작업후 href 수정 예정 2022-08-19 by.jyj
-                    {
-                        name : '내 정보', 
-                        href : '/mypage'
-                    },
-                    {
-                        name : '패스워드 변경',
-                        href : '/changepw'
-                    },
-                    {
-                        name : '로그아웃',
-                        href : '/about'
-                    },
-                ],
-                isAddClass : false
-            }
-        },
-        methods :{
-          dropdown (){
-            this.isAddClass = !this.isAddClass;
-          }
+import { mapState } from 'vuex'
+
+export default {
+  computed:{
+      ...mapState('members',[
+            'user',
+          ])
+      },
+    data(){
+        return {
+            infoDropdown:[
+            // 관리자 페이지 작업후 href 수정 예정 2022-08-19 by.jyj
+                {
+                    name : '내 정보', 
+                    href : '/mypage'
+                },
+                {
+                    name : '패스워드 변경',
+                    href : '/changepw'
+                },
+                {
+                    name : '로그아웃',
+                    href : '/'
+                },
+            ],
+            isAddClass : false
         }
+    },
+    // props:{
+    //     userInfo: {
+    //         type:Object,
+    //         default(){
+    //             return {
+    //                 name: '', // 기기명
+    //             }
+    //         }
+    //     }
+    // },
+    methods :{
+      dropdown(menu) {
+        console.log('dropdown', menu)
+        this.isAddClass = !this.isAddClass
+        if (menu && menu.name == '로그아웃') {
+          this.$store.dispatch('members/LOGOUT')
+        }
+      }
     }
+}
 </script>
 
 <style lang="scss" scoped>

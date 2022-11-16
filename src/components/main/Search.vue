@@ -32,9 +32,11 @@ export default {
     },
     methods:{
         searchItem(){
-            this.$store.dispatch('equipments/searchEquipment',{
-                keyword : this.keyword
-            })
+            // this.$store.dispatch('equipments/searchEquipment',{
+            //     keyword : this.keyword
+            // })
+
+            this.$emit("clickSearch", this.keyword)
         }
     }
 }
