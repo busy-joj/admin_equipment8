@@ -116,7 +116,7 @@ export default {
   &.rented{opacity: .32;pointer-events: none;
     .btn-info-detail{cursor: inherit;}
   }
-  .btn-info-detail{position:absolute;top:24px;right:16px;letter-spacing:15px;height:18px;background:url(~/assets/icon-more.png);background-size:100%;background-position:center;}
+  .btn-info-detail{position:absolute;top:24px;right:16px;letter-spacing:15px;background:url(~/assets/icon-more.png);background-size:100%;background-position:center;}
 }
 
 .apply{
