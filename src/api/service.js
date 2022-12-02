@@ -3,8 +3,8 @@ import axios from 'axios'
 
 // 프로젝트 설정에 맞게, 기본적인 정보를 넣어주세요
 const service = axios.create({
-  baseURL: 'http://localhost:9090/', // local
-  // baseURL: 'https://cc637a0d-ed0c-4cc6-a1b7-e421613ec154.mock.pstmn.io/', // mockup
+  //baseURL: 'http://localhost:9090/', // local
+  baseURL: 'https://cc637a0d-ed0c-4cc6-a1b7-e421613ec154.mock.pstmn.io/', // mockup
   timeout: '10000',
   withCredentials: false
 })
