@@ -68,5 +68,4 @@ export default {
 
 <style lang="scss" scoped>
 .input-box{padding:24px 0 0 0;}
-.btn-modify{margin-top:40px !important;}
 </style>

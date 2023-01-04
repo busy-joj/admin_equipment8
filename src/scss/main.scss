@@ -82,7 +82,12 @@ h3{font-size:24px;font-weight: 600 !important;letter-spacing: -.03rem;line-heigh
   background: #fff;border:1px solid #d9d9d9;padding:16px 32px;border-radius:4px;
 }
 
-.v3dp__datepicker{width:50%;height:42px;display:inline-block;--elem-hover-bg-color: var(--vdp-hover-bg-color, #2C8DFF);--elem-selected-bg-color:var(--vdp-selected-bg-color, #2C8DFF);
+.datapicker-box-item{display:flex;width:100%;gap:8px;flex-direction:column;align-content:space-between;position:relative;
+  &:nth-child(even)::before{position: absolute;content:'~';bottom:10px;left:-17px;}
+  .txt{font-size:14px;color:$M-gray5;}
+}
+
+.v3dp__datepicker{width:100%;height:42px;display:inline-block;--elem-hover-bg-color: var(--vdp-hover-bg-color, #2C8DFF);--elem-selected-bg-color:var(--vdp-selected-bg-color, #2C8DFF);
   & + .v3dp__datepicker{margin-left:24px;
     &::before{content: '~';position:absolute;width:12px;left:-18px;top:8px;}
   }
@@ -113,17 +118,21 @@ input[type=number] {
 }
 
 .input-box{
-  form.was-validated{
-    .form-control{
-      &:invalid{background: none;border-color:$M-red;}
-      &:valid{background: none;}
+  form{display:flex;flex-direction:column;gap:24px;
+    &.was-validated{
+      .form-control{
+        &:invalid{background: none;border-color:$M-red;}
+        &:valid{background: none;}
+      }
+      & :invalid ~ .invalid-feedback{font-size:12px;color:$M-red;position:absolute;margin:4px 0 0 0;}
     }
-    & :invalid ~ .invalid-feedback{font-size:12px;color:$M-red;position:absolute;margin:4px 0 0 0;}
-  } 
-  div{position:relative;margin-top:24px;
+    div:last-child:has(.btn){margin-top:16px;}
+  }
+  div{position:relative;
     &:first-child{margin-top:0px;}
     &.on::before{filter: brightness(0%);}
-    input.form-control{width:100%;height:42px;font-size:14px;color:$M-black;padding:12px 16px;
+    .form-control{width:100%;font-size:14px;color:$M-black;padding:12px 16px;line-height:16px;
+      &input{height:42px;}
       &::placeholder{color:$M-gray4}
       &:focus{border-color:$primary;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);}
     }
@@ -133,11 +142,51 @@ input[type=number] {
     .input-inside{margin:0;}
     input + .inside-txt{position:absolute;font-size:14px;color:$M-gray4;top:12px;right:16px;}
   }
+  .form-select{width:100%;height:42px;font-size:14px;color:$M-black;padding:12px 16px;
+    &:focus{border-color:$primary;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);}
+    &:not(:focus):invalid {
+      color:$M-gray4;
+    }
+    option{font-size:14px;}
+  }
+}
+
+/* table-box common */
+.table-box{margin-top:24px;border:1px solid $M-gray3;border-radius:4px;padding:8px 16px;width:100%;height:544px;
+  &.dropdown{height:auto;min-height:544px;}
+  table{width:100%;text-align:center;font-size:14px;color:$M-gray5;}
+  .table-body{
+    tr:last-child{border-bottom:none !important;}
+    .txt-center{text-align: center;padding:21px 0 13px;}
+  }
+  tr{border-bottom:1px solid $M-gray3;
+    th{padding:13px 8px 13px 0;text-align:left;font-weight:bold;color:$M-gray5;
+      &.input{text-align:center;}
+        .icon{display: inline-block;
+        &.more{width:18px;height:15px;background:url(~/assets/icon-more.png) no-repeat;background-size:100%;}
+      }
+    }
+    td{padding:13px 8px 13px 0;text-align:left;
+      &:first-child{text-align:center;}
+    }
+    &.overdue{color:$M-red;}
+    &.apply{
+      td:nth-child(2){color:$M-primary;}
+    }   
+    input{width:16px;height:16px;vertical-align:sub;}
+  }
+  .form-check{width:16px;height:16px;vertical-align:sub;min-height:18px;display:inline-block;}
+}
+
+/* btn common */
+.btn{
+  .icon{display:inline-block;width:24px;height:24px;
+    &.cart{background:url(~/assets/icon-cart.png) center/100% no-repeat;}
+  }
+  .num{display:inline-block;min-width:28px;background: #fff;color:$M-primary;border:1px solid $M-primary;line-height:18px;padding:0px 8px;border-radius: 16px;}
 }
 
 .error-msg{font-size: 12px;color:$M-red;}
-
-
 // Required
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";

@@ -79,7 +79,6 @@ export default {
 
 <style lang="scss" scoped>
 .input-box{margin-top:40px;
-    .btn-find{margin-top:40px;}
     .error-msg{text-align: center;}
 }
 </style>

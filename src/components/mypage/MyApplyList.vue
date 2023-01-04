@@ -1,26 +1,24 @@
 <template>
   <BasicTable>
     <template #thead>
-      <th>No.</th>
-      <th>장비명</th>
-      <th>상태</th>
-      <th>종류</th>
-      <th>OS</th>
-      <th>대여 시작일</th>
-      <th>반납 예정일</th>
-      <th>모델(유심)번호</th>
-      <th>시리얼 번호</th>
+      <th width="9.5%">No.</th>
+      <th width="15.5%">장비명</th>
+      <th width="9.5%">상태</th>
+      <th width="13%">OS</th>
+      <th width="13%">대여 시작일</th>
+      <th width="13.5%">반납 예정일</th>
+      <th width="15%">모델(유심)번호</th>
+      <th width="">시리얼 번호</th>
     </template>
-    <template #tlist="tlist">
-      <th>{{ tlist.row.no }}</th>
-      <th>{{ tlist.row.equipment }}</th>
-      <th>{{ tlist.row.rentalStatusText }}</th>
-      <th>{{ tlist.row.device }}</th>
-      <th>{{ tlist.row.OS }}</th>
-      <th>{{ tlist.row.start }}</th>
-      <th>{{ tlist.row.end }}</th>
-      <th>{{ tlist.row.ModelNo }}</th>
-      <th>{{ tlist.row.serialNo }}</th>
+    <template #tlist="{row}">
+      <td>{{ row.no }}</td>
+      <td>{{ row.equipment }}</td>
+      <td>{{ row.rentalStatusText }}</td>
+      <td>{{ row.OS }}</td>
+      <td>{{ row.start }}</td>
+      <td>{{ row.end }}</td>
+      <td>{{ row.ModelNo }}</td>
+      <td>{{ row.serialNo }}</td>
     </template>
   </BasicTable>
 </template>
@@ -74,5 +72,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-th{padding:13px 0;}
+th:first-child{text-align:center !important;}
 </style>

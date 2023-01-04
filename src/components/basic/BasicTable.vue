@@ -8,12 +8,12 @@
       </thead>
       <tbody class="table-body">
         <template
-          v-for="row in list"
-          :key="row">
-          <tr>
+          v-for="(row, index) in list"
+          :key="index">
+          <tr :class="row.rentalStatus">
             <slot
               name="tlist"
-              :row="row"></slot>
+              :row="row" :index="index"></slot>
           </tr>
         </template>
         <tr v-if="list.length === 0">
@@ -46,7 +46,7 @@ export default {
         return {
           // 더미 데이터
           list: [
-              // {no:1,equipment:'Galaxy A9 pro', device: '폰', OS:'Android 12', start:'2022.6.23',end:'2022.6.28',ModelNo:'SM-G997N',serialNo:'R59M107TG'},
+              // {no:1,equipment:'Galaxy A9 pro', device: ['가','나','다','라'], OS:'Android 12', start:'2022.6.23',end:'2022.6.28',ModelNo:'SM-G997N',serialNo:'R59M107TG'},
               // {no:2,equipment:'Galaxy A10 pro', device: '폰', OS:'Android 12', start:'2022.6.23',end:'2022.6.28',ModelNo:'SM-G997N',serialNo:'R59M107TG'},
               // {no:3,equipment:'Galaxy 11 pro', device: '폰', OS:'Android 12', start:'2022.6.23',end:'2022.6.28',ModelNo:'SM-G997N',serialNo:'R59M107TG'},
               // {no:4,equipment:'Galaxy 12 pro', device: '폰', OS:'Android 12', start:'2022.6.23',end:'2022.6.28',ModelNo:'SM-G997N',serialNo:'R59M107TG'},
@@ -91,7 +91,8 @@ export default {
                       end:'2022.6.28',
                       ModelNo:'SM-G997N',
                       serialNo:'R59M107TG',
-                      rentalStatusText:''
+                      rentalStatusText:'',
+                      rentalStatus:''
                     }
                     // 신청완료, 대여중, 연체
 
@@ -120,15 +121,19 @@ export default {
                       _rental.device = deviceTypeText
 
                       var rentalStatusText = ''
+                      var rentalStatus = ''
                       if (row.rentalStatus == 1) {
+                        rentalStatus = 'apply'
                         rentalStatusText = '신청 완료'
                       }
                       if (row.rentalStatus == 2) {
                         rentalStatusText = '대여중'
                       }
                       if (row.rentalStatus == 3) {
+                        rentalStatus = 'overdue'
                         rentalStatusText = '연체'
                       }
+                      _rental.rentalStatus = rentalStatus
                       _rental.rentalStatusText = rentalStatusText
 
                       var _copied = Object.assign({}, _rental)
@@ -147,19 +152,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.table-box{margin-top:24px;border:1px solid $M-gray3;border-radius:4px;padding:8px 16px;width:100%;
-    table{width:100%;text-align:center;font-size:14px;color:$M-gray5;
-        tr{border-bottom:1px solid $M-gray3;
-            // &:last-child{border:none;}
-        }
-        th{padding:13px 0;}
-        .table-header{
-            tr{font-weight:bold;color:$M-gray5;}
-        }
-        .table-body{
-            tr:last-child{border-bottom:none;}
-            .txt-center{text-align: center;padding:21px 0 13px;}
-        }
-    }
-}
+
 </style>

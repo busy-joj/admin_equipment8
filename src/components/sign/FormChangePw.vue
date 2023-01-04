@@ -66,8 +66,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input-box{margin:40px 0 0 0;
-    &.btn-change{margin:40px 0 0 0;}
-}
-
+.input-box{margin:40px 0 0 0;}
 </style>

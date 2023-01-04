@@ -20,7 +20,42 @@
           @selectEquipment="selectEquipment" />
       </template>
     </ContentBottom>
-    <Collapse />
+
+    <Collapse :class="{'collapse':true,'apply':true,'show':isCollapse}">
+      <template v-slot:content>
+        <CollapseApply :id="'collapseApply'"></CollapseApply>
+        <CollapseBottom :class="{'apply-btns':true}">
+              <template v-slot:contentBtn>
+                <BasicButton
+                  @click="handleSubmit"
+                  :class="{primary : true, lg:true , 'btn-cart-submit':true}"
+                  type="submit">
+                  <span class="icon cart"></span>신청하기<span class="num">{{ countApplyItem }}</span>
+                </BasicButton>
+                <BasicButton
+                  @click="handleCollapsed"
+                  :class="{white : true, lg:true , 'btn-cart-close':true}"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseApply"
+                  :aria-expanded="!accessibility"
+                  aria-controls="collapseApply">
+                  닫기
+                </BasicButton>
+              </template>
+            </CollapseBottom>
+      </template>
+    </Collapse>
+
+    <BasicButton
+      @click="handleCollapsed"
+      :class="{primary : true, mn: true, fixed:true}"
+      v-show="0 < countApplyItem"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseApply"
+      :aria-expanded="accessibility"
+      aria-controls="collapseApply">
+      <span class="icon cart"></span>신청하기<span class="num">{{ countApplyItem }}</span>
+    </BasicButton>
 </template>
 
 <script>
@@ -28,17 +63,27 @@ import { mapState, mapGetters } from 'vuex'
 
 import ContentTop from '~/components/layout/ContentTop'
 import ContentBottom from '~/components/layout/ContentBottom'
-import Collapse from '~/components/layout/Collapse'
 
 import MainCardList from '~/components/main/MainCardList'
 import MainTabs from '~/components/main/MainTabs'
 import Search from '~/components/main/Search'
 
+import Collapse from '~/components/collapse/Collapse'
+import CollapseBottom from '~/components/collapse/CollapseBottom'
+import CollapseApply from '~/components/collapse/CollapseApply'
+
+import BasicButton from '~/components/basic/BasicButton'
+
+import { isProxy, toRaw } from 'vue'
+
 export default {
   components:{
     ContentTop,
     ContentBottom,
-    Collapse,   
+    Collapse,  
+    CollapseApply,
+    CollapseBottom,
+    BasicButton,
     MainCardList, 
     MainTabs,
     Search
@@ -93,6 +138,9 @@ export default {
         {id:'18', model: 'Galaxy A10 Pro',os: 'Android 112',isSelected : false,isRented: false},
         {id:'19', model: 'Galaxy A10 Pro',os: 'Android 112',isSelected : false,isRented: false}
       ],
+      isCollapse : false,
+      accessibility : false,
+      succeed:false,
     }
   },
   computed:{
@@ -151,10 +199,61 @@ export default {
       this.$store.dispatch('equipments/EQUIPMENT_SEARCH', this.criteria)
     },
 
+    handleCollapsed() {
+      console.log('Collapse.vue handleCollapsed', this.isCollapse)
+      this.isCollapse = !this.isCollapse
+    },
+    handleSubmit(){
+      console.log('Collapse.vue handleSubmit')
+
+      let deviceIds = []
+
+      let rawData = this.applyList
+
+      if (isProxy(rawData)) {
+          rawData = toRaw(rawData)
+      }
+
+      rawData.forEach((device) => {
+          deviceIds.push(device.id)
+      })
+
+      // const accessToken = VueCookies.get('accessToken')
+      const accessToken = localStorage.getItem('access_token')
+
+      if (accessToken) {
+          const decoded = this.$parseJwt(accessToken)
+          const params = {
+              userId: Number(decoded.uid),
+              deviceIds: deviceIds,
+              startDate: this.$formatDate(this.startDate),
+              endDate: this.$formatDate(this.endDate),
+          }
+
+          this.$store.dispatch('equipments/EQUIPMENT_RENTAL_REQUEST', params)
+          .then(response => {
+              console.log('Collapse.vue handleSubmit Success then response', response)
+              this.$router.replace('/rent/request/done')
+          }).catch(error => {
+              console.log('11111 catch error', error)
+              if (error.details) {
+                  error.details.forEach((target, i) => {
+                      console.log('error.details target: ' + target.message + ' | index: ' + i)
+                  })
+              }
+          })
+      }
+
+  },
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
 h3 .num{font-size:13px;margin-left:8px;padding:2px 8px;background:$M-primary;border-radius:4px;vertical-align:bottom;color:$white;font-weight:600;}
+.apply{
+  .btn-cart-submit{display:flex;align-items:center;justify-content:center;font-weight:600;gap:8px;}
+}
+
 </style>

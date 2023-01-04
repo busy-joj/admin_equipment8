@@ -428,8 +428,6 @@ export default {
 
 <style lang="scss" scoped>
 .input-box{margin:40px 0 0 0;
-    .btn-sign-up{margin:40px 0 0 0;
-        .btn{font-weight:normal;font-size:16px;line-height:14px;}
-    }
+    .btn{font-weight:normal;font-size:16px;line-height:14px;}
 }
 </style>

@@ -1,20 +1,22 @@
 <template>
-  <div class="inner">
-    <div class="list-card apply">
-      <CardItem
-        v-for="equipment in applyList"
-        :key="equipment" 
-        :equipment="equipment" 
-        @click="handlePreventEvent($event)" 
-        @showModal="handleShowModal(equipment)" />
+  <div>
+    <div class="inner">
+      <div class="list-card apply">
+        <CardItem
+          v-for="equipment in applyList"
+          :key="equipment" 
+          :equipment="equipment" 
+          @click="handlePreventEvent($event)" 
+          @showModal="handleShowModal(equipment)" />
+      </div>
     </div>
+    <CancelModal
+      v-if="showModal"
+      class="detail-info" 
+      :equipment-info="equipmentInfo" 
+      @deleteEquipment="handleDeleteEquipment"
+      @closeModal="handleCloseModal" />
   </div>
-  <CancelModal
-    v-if="showModal"
-    class="detail-info" 
-    :equipment-info="equipmentInfo" 
-    @deleteEquipment="handleDeleteEquipment"
-    @closeModal="handleCloseModal" />
 </template>
 
 <script>
@@ -39,13 +41,6 @@ export default {
         'countApplyItem',
         'applyList'
       ])
-  },
-  props:{
-    // 대여 신청할 기기목록
-    applyList: {
-      type: Array,
-      default: () => []
-    }
   },
   methods:{
     linkPrevent(e){

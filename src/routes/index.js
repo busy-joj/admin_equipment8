@@ -1,18 +1,21 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import Main from './Main'
-import Movie from './Movie'
-import About from './About'
-import Account from './Account'
-import MyPage from './MyPage'
-import RentApply from './RentApply'
-import ChangePw from './ChangePw'
-import SignIn from './SignIn'
-import SignUp from './SignUp'
-import SignFind from './SignFind'
-import Success from './Success'
-import RentRequestDone from './RentRequestDone'
-// import SignUp from './SignUp'
-// import SignFind from './SignFind'
+
+// common 페이지
+import Main from './common/Main'
+import MyPage from './common/MyPage'
+
+import SignIn from './common/SignIn'
+import SignUp from './common/SignUp'
+import SignFind from './common/SignFind'
+import ChangePw from './common/ChangePw'
+import Success from './common/Success'
+import RentRequestDone from './common/RentRequestDone'
+
+// 관리자 nav 페이지
+import AdminEquip from './admin/AdminEquip'
+import AdminRent from './admin/AdminRent'
+import AdminTake from './admin/AdminTake'
+import AdminAccount from './admin/AdminAccount'
 
 function parseJwt (token) {
     console.log('index.js token', token)
@@ -72,28 +75,10 @@ export default createRouter({
             beforeEnter: requireAuth()
         },
         {
-            path: '/movie',
-            component: Movie
-        },
-        {
-            path: '/about',
-            component: About,
-            beforeEnter: requireAuth()
-        },
-        {
-            path: '/account',
-            component: Account,
-            beforeEnter: requireAuth()
-        },
-        {
             path: '/mypage',
             component: MyPage,
             beforeEnter: requireAuth(),
             props: true
-        },
-        {
-            path: '/rentApply',
-            component: RentApply
         },
         {
             path: '/success',
@@ -109,5 +94,22 @@ export default createRouter({
             path: '/changepw',
             component: ChangePw
         },
+        // 관리자 nav 페이지
+        {
+            path: '/adminEquip',
+            component: AdminEquip
+        },
+        {
+            path: '/adminRent',
+            component: AdminRent
+        },
+        {
+            path: '/adminTake',
+            component: AdminTake
+        },
+        {
+            path: '/adminAccount',
+            component: AdminAccount
+        }
     ]
 })

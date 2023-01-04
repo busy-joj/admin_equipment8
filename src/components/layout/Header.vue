@@ -4,7 +4,10 @@
     <Logo />
     <div
       class="nav nav-pills"
-      v-if="loggedIn && administrator">
+      >
+    <!-- <div
+      class="nav nav-pills"
+      v-if="loggedIn && administrator"> -->
       <div 
         v-for="nav in navigation"
         :key="nav.name"
@@ -38,20 +41,20 @@ import { mapState } from 'vuex'
               navigation:[
                 // 관리자 페이지 작업후 href 수정 예정 2022-08-19 by.jyj
                   {
-                      name : '장비대여',
-                      href : '/main'
+                      name : '장비관리',
+                      href : '/adminEquip'
                   },
                   {
-                      name : '장비관리',
-                      href : '/movie'
+                      name : '대여내역',
+                      href : '/adminRent'
                   },
                   {
                       name : '수령확인',
-                      href : '/about'
+                      href : '/adminTake'
                   },
                   {
                       name : '계정관리',
-                      href : '/account'
+                      href : '/adminAccount'
                   }
               ]
           }

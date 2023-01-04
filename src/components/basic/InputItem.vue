@@ -4,7 +4,7 @@
             <slot></slot>
         </label>
         <div class="col-sm-10" v-if="id == 'date'">
-            <DatePicker />
+            <InputDate />
         </div>
         <div v-else class="col-sm-10">
             <input :type="type" class="form-control" :id="id" :value="value">
@@ -14,11 +14,11 @@
 </template> 
 
 <script>
-import DatePicker from '~/components/basic/DatePicker'
+import InputDate from '~/components/basic/InputDate'
 
 export default {
     components:{
-        DatePicker
+        InputDate
     },
     props:{
         id:{
